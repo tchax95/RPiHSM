@@ -1,4 +1,4 @@
-#RPiHSM-API
+# RPiHSM-API
 
 API to communicate with the RPiHSM-IoT application. These API can be used to perform all the [Keyczar](https://github.com/google/keyczar/blob/master/LICENSE) functionality on the Raspberry Pi. 
 The commands are sent to the RPiHSM-IoT through the serial cable thanks a the RXTX loader. 
