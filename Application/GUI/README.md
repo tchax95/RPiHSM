@@ -1,4 +1,4 @@
-#RPiHSM-GUI
+# RPiHSM-GUI
 
 This application receives the user commands thanks to a graphical interface. If all the information are correct it sends to the RPiHSM-IoT application the right command.  
 
