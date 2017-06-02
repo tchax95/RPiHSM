@@ -1,4 +1,5 @@
 #RPiHSM-GUI
+
 This application receives the user commands thanks to a graphical interface. If all the information are correct it sends to the RPiHSM-IoT application the right command.  
 
 All the information and reports (JavaDocs, JaCoCo Test, Surefire report, JDepend)  of the project can be found in the *site* directory after the execution of `mvn clean package site`  on the home directory of the project.
