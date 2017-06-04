@@ -37,18 +37,18 @@ public final class SerialHelper implements SerialHelperI {
 
         CommPortIdentifier portIdentifier = (CommPortIdentifier) CommPortIdentifier.getPortIdentifiers().nextElement();
 
+        try {
+            CommPort commPort = portIdentifier.open(Constants.NAME, Constants.TIME_TO_WAIT);//new owner and time to wait
+            if (commPort instanceof SerialPort) {
+                serialPort = (SerialPort) commPort;
 
-        CommPort commPort = portIdentifier.open(Constants.NAME, Constants.TIME_TO_WAIT);//new owner and time to wait
-
-        if (commPort instanceof SerialPort) {
-            serialPort = (SerialPort) commPort;
-
-            serialPort.setSerialPortParams(Constants.CONNECTION_SPEED, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
-
-        } else {
+                serialPort.setSerialPortParams(Constants.CONNECTION_SPEED, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+            } else {
+                throw new SerialPortException();
+            }
+        }catch (UnsatisfiedLinkError e){
             throw new SerialPortException();
         }
-
         try {
             in = serialPort.getInputStream();
             out = serialPort.getOutputStream();
