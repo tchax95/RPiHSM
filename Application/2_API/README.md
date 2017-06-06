@@ -26,7 +26,7 @@ These are the software prerequisites to use the RPiHSM-API application.
 
 # Driver
 
-To be able to use the serial cable plase install the driver for you operation system. All the inforamtion are in the README in the 'driver' directory.
+To be able to use the serial cable plase install the driver for you operation system. All the inforamtion are in the README in the `driver` directory.
 
 # Configuration
 To use these APi, first compile the project with `mvn clean package` then the compiled jar (found in the *target* directory) must be installed in maven with ` mvn install:install-file -Dfile=RPiHSM-API-1.0.jar -DgroupId=ch.bfh.ti.project1.RPiHSM-API -DartifactId=RPiHSM-API -Dversion=1.0 -Dpackaging=ja`.
