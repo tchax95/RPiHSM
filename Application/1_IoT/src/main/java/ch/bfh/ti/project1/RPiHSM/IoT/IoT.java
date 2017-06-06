@@ -42,13 +42,13 @@ public class IoT {
 
         SerialHelperI serialHelper = new SerialHelper(); //initialisation of the serial helper
 
-        while (true) {
+        while (true) { // this loop is not a busy one -> it does not use resources. It waits (readLine) for a command and when it is executed it waits for another one.
 
             String commandRead = serialHelper.readLine(); //read the command from the command line (wait for  input)
             yellow.blink(500);//blink every 0.5 s
             String[] commands = commandRead.split(" ");
 
-            //Create new factory
+            //Create new convenient factory to generate a instance of ICommand
             CommandFactory cmFactory = new CommandFactory();
 
             //Ask for a command giving the cmd arg
