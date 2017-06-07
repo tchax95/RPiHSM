@@ -1,11 +1,9 @@
 package ch.bfh.ti.project1.RPiHSM.GUI;
 
-import ch.bfh.ti.project1.RPiHSM.GUI.stages.Constants;
-import ch.bfh.ti.project1.RPiHSM.GUI.stages.ErrorStage;
-import ch.bfh.ti.project1.RPiHSM.GUI.stages.LoginStage;
-import ch.bfh.ti.project1.RPiHSM.API.SerialHelper;
+import ch.bfh.ti.project1.RPiHSM.GUI.stages.*;
 import gnu.io.PortInUseException;
 import gnu.io.UnsupportedCommOperationException;
+import ch.bfh.ti.project1.RPiHSM.API.SerialHelper;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

@@ -7,7 +7,7 @@ package ch.bfh.ti.project1.RPiHSM.GUI.stages;
 public final class Constants {
     public static final double WIDTH = 1024;
     public static final double HEIGHT = 576;
-    public static final int MAIN_MENU_BUTTON_SIZE = 150;
+    public static final int MAIN_MENU_BUTTON_SIZE = 200;
     public static final int PADDING_SMALL = 10;
     public static final int PADDING_MEDIUM = 25;
     public static final int HEADER_HEIGHT = 100;
@@ -17,6 +17,8 @@ public final class Constants {
     public static final String PANE_BACKGROUND = "-fx-background-color: #FFFFFF;";
     public static final String HEADER_TITLE_COLOR = "#697D91";
     public static final String HEADER_BACKGROUND = "-fx-background-color: #FAC300;";
+    public static final String BUTTONS_STYLE = "-fx-font: 15 arial; -fx-base: #697D91; -fx-text-fill: #FAC300; -fx-font-weight: bold;";
+    public static final String CONTAINERS_STYLE = "-fx-border-color: black; -fx-border-width: 1; -fx-border-style: solid;";
     public static final String HEADER_IMAGE_PATH = "/images/bfh_logo.png";
     public static final String NUMBER_FIELD_PATTERN = "^([1-9]|[1-9][0-9])$";
     public static final String KEY_SIZES_FIELD_PATTERN = "^[0-9]{1,4}$";
@@ -72,10 +74,10 @@ public final class Constants {
     public static final String MAIN_STAGE_BUTTON_DECRYPT = "Decrypt File";
     public static final String MAIN_STAGE_BUTTON_ENCRYPT = "Encrypt File";
     public static final String MAIN_STAGE_BUTTON_PROMOTE_DEMOTE = "Promote/Demote Key";
-    public static final String MAIN_STAGE_BUTTON_PUBLICKEY = "Public Keys";
+    public static final String MAIN_STAGE_BUTTON_PUBLICKEY = "Export Public Keys";
     public static final String MAIN_STAGE_BUTTON_REVOKE = "Revoke Key";
     public static final String MAIN_STAGE_BUTTON_SIGN = "Sign File";
-    public static final String MAIN_STAGE_BUTTON_VERIFY = "Verify File Signature";
+    public static final String MAIN_STAGE_BUTTON_VERIFY = "Verify Signature";
     public static final String LOGIN_STAGE_TITLE = "Login to use the application features";
     public static final String MAIN_STAGE_TITLE = "Welcome to RPiHSM GUI Tool";
     public static final String ADD_KEY_COMMAND_STAGE_TITLE = "Add a new key";
@@ -119,4 +121,8 @@ public final class Constants {
     public final static String VERIFY_NOT_SUCCESS = "Signature verify has not been successful";
     public final static String FILE_COPY_ERROR = "An error has occurred while copying the file";
     public final static String PORT_ERROR = "Port Error";
+    public final static String MAIN_STAGE_CONTAINER1_TITLE = "Key Set Operations";
+    public final static String MAIN_STAGE_CONTAINER2_TITLE = "Key Operations";
+    public final static String MAIN_STAGE_CONTAINER3_TITLE = "Cryptography Operations";
+    public final static String MAIN_STAGE_CONTAINER4_TITLE = "Signature Operations";
 }

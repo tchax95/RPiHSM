@@ -15,7 +15,7 @@ public final class PublicKey {
     private SerialHelperI serialHelper;
     private String userPath;
     private String name;
-    public String destination;
+    private String destination;
 
     /**
      * Sets {@link SerialHelperI} instance to communicate with the IoT application and the public key generation parameters.

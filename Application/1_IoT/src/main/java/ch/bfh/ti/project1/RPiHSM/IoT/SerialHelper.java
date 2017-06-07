@@ -5,7 +5,6 @@ import ch.bfh.ti.project1.RPiHSM.IoT.Utils.Constants;
 import com.pi4j.io.gpio.*;
 import com.pi4j.io.gpio.exception.UnsupportedBoardType;
 import com.pi4j.io.serial.*;
-import com.pi4j.util.Console;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,7 +19,6 @@ import java.nio.file.Paths;
  */
 public final class SerialHelper implements SerialHelperI {
 
-    public Console console;
     private Serial serialPort;
     private InputStream in;
     private OutputStream out;
@@ -31,7 +29,6 @@ public final class SerialHelper implements SerialHelperI {
      * If a error occurs the program is terminated.
      */
     public SerialHelper() {
-        console = new Console();
         gpio = GpioFactory.getInstance();
         red = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_06, "Red", PinState.LOW);
         connect();
