@@ -2,6 +2,7 @@ package ch.bfh.ti.project1.RPiHSM.CommandLine.Command;
 
 import ch.bfh.ti.project1.RPiHSM.API.EncryptDecrypt;
 import ch.bfh.ti.project1.RPiHSM.API.SerialHelper;
+
 import com.beust.jcommander.Parameter;
 
 import javax.naming.OperationNotSupportedException;

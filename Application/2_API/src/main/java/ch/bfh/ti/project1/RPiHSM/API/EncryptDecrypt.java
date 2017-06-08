@@ -1,6 +1,7 @@
 package ch.bfh.ti.project1.RPiHSM.API;
 
 import javax.naming.OperationNotSupportedException;
+
 import java.io.FileNotFoundException;
 
 /**
@@ -73,7 +74,7 @@ public final class EncryptDecrypt {
             serialHelper.sendFile(file);
 
             if (!serialHelper.status()) {
-                return false; //ENCRYPTION or DECRYPTION ERROR
+            	return false;
             }
 
             serialHelper.readFile(file);

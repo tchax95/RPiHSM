@@ -5,8 +5,8 @@ package ch.bfh.ti.project1.RPiHSM.GUI.stages;
  * Constants for the GUI application.
  */
 public final class Constants {
-    public static final double WIDTH = 1024;
-    public static final double HEIGHT = 576;
+    public static final double WIDTH = 1280;
+    public static final double HEIGHT = 720;
     public static final int MAIN_MENU_BUTTON_SIZE = 200;
     public static final int PADDING_SMALL = 10;
     public static final int PADDING_MEDIUM = 25;
@@ -17,7 +17,8 @@ public final class Constants {
     public static final String PANE_BACKGROUND = "-fx-background-color: #FFFFFF;";
     public static final String HEADER_TITLE_COLOR = "#697D91";
     public static final String HEADER_BACKGROUND = "-fx-background-color: #FAC300;";
-    public static final String BUTTONS_STYLE = "-fx-font: 15 arial; -fx-base: #697D91; -fx-text-fill: #FAC300; -fx-font-weight: bold;";
+    public static final String SECTIONS_TITLES_STYLE = "-fx-font: 15 arial; -fx-text-fill: #697D91; -fx-font-weight: bold;";
+    public static final String BUTTONS_STYLE = "-fx-font: 15 arial; -fx-base: #697D91; -fx-pref-height: 50px; -fx-text-fill: #FFFFFF; -fx-font-weight: bold;";
     public static final String CONTAINERS_STYLE = "-fx-border-color: black; -fx-border-width: 1; -fx-border-style: solid;";
     public static final String HEADER_IMAGE_PATH = "/images/bfh_logo.png";
     public static final String NUMBER_FIELD_PATTERN = "^([1-9]|[1-9][0-9])$";
@@ -58,6 +59,8 @@ public final class Constants {
     public static final String FILE_CHOOSER_DESTINATION_SELECTED = "Destination folder selected!";
     public static final String FILE_CHOOSER_DESTINATION_NOT_SELECTED = "Destination folder not selected!";
     public static final String BACK_BUTTON_TEXT = "Back to Menu";
+    public static final double BACK_BUTTON_HEIGHT = 30;
+    public static final double BACK_BUTTON_WIDTH = Constants.MAIN_MENU_BUTTON_SIZE;
     public static final String BUTTON_TEXT_ADDKEY = "Add Key";
     public static final String BUTTON_TEXT_CREATEKEYSET = "Create a new key set";
     public static final String BUTTON_TEXT_DELETEKEYSET = "Delete a key set";
@@ -93,18 +96,20 @@ public final class Constants {
     public static final String WRONG_AUTHENTICATION = "Wrong credentials! Try again!";
     public final static String PORT_IN_USE = "The USB Port is used by another process";
     public final static String PORT_NOT_CONNECTED = "The USB Port is not connected";
+    public static final String PORT_ERROR = "The serial port has some problems";
     public final static String UNSUPPORTED_COM_OPERATION = "Something has gone wrong with the connection";
+    public final static String UNSUPPORTED_OPERATION = "Something has gone wrong with the command execution";
     public static final String FILE_NOT_FOUND = "File not found!";
     public final static String ENCRYPT_SUCCESS = "The encryption has been successful";
-    public final static String ENCRYPT_NOT_SUCCESS = "The encryption has not been successful";
+    public final static String ENCRYPT_NOT_SUCCESS = "The encryption has not been successful!\n If you are using a RSA key set check that the file is smaller than 470 bytes!";
     public final static String DECRYPT_SUCCESS = "The decryption has been successful";
-    public final static String DECRYPT_NOT_SUCCESS = "The decryption has not been successful";
+    public final static String DECRYPT_NOT_SUCCESS = "The decryption has not been successful!\n If you are using a RSA key set check that the file is smaller than 470 bytes!";
     public final static String KEY_SUCCESS = "The key creation has been successful";
     public final static String KEY_NOT_SUCCESS = "The key creation has not been successful";
     public final static String KEYSET_CREATION_SUCCESS = "The key set creation has been successful";
-    public final static String KEYSET_CREATION_NOT_SUCCESS = "The key set creation has not been successful";
+    public final static String KEYSET_CREATION_NOT_SUCCESS = "The key set creation has not been successful!\n Check that it does not already exist!";
     public final static String KEYSET_DELETION_SUCCESS = "The key set deletion has been successful";
-    public final static String KEYSET_DELETION_NOT_SUCCESS = "The key set deletion has not been successful";
+    public final static String KEYSET_DELETION_NOT_SUCCESS = "The key set deletion has not been successful!";
     public final static String KEYSET_NOT_EXISTS = "The key set does not exist!";
     public final static String KEYSET_EXISTS = "The key set exist!";
     public final static String PROMOTE_SUCCESS = "The promotion has been successful";
@@ -120,9 +125,11 @@ public final class Constants {
     public final static String VERIFY_SUCCESS = "Signature verify has been successful";
     public final static String VERIFY_NOT_SUCCESS = "Signature verify has not been successful";
     public final static String FILE_COPY_ERROR = "An error has occurred while copying the file";
-    public final static String PORT_ERROR = "Port Error";
     public final static String MAIN_STAGE_CONTAINER1_TITLE = "Key Set Operations";
     public final static String MAIN_STAGE_CONTAINER2_TITLE = "Key Operations";
     public final static String MAIN_STAGE_CONTAINER3_TITLE = "Cryptography Operations";
     public final static String MAIN_STAGE_CONTAINER4_TITLE = "Signature Operations";
+	public static final String KEY_SET_IS_EMPTY = "The key set is empty!";
+	public static final String KEY_SET_NOT_ASYMMETRIC = "The key set is not asymmetric!";
+	public static final String RSA_FILE_SIZE_ERROR = "The file size using RSA must be less than 470 bytes";
 }

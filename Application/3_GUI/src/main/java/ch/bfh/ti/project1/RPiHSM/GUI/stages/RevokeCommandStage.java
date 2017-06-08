@@ -49,7 +49,7 @@ public class RevokeCommandStage extends AbstractStage {
                 	error(Constants.REVOKE_NOT_SUCCESS);
                 }
             } catch (OperationNotSupportedException e1) {
-                error(Constants.REVOKE_NOT_SUCCESS);
+                error(Constants.UNSUPPORTED_OPERATION);
             }
         });
 

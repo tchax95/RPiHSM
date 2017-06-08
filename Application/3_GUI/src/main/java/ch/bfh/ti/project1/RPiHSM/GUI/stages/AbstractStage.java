@@ -62,6 +62,7 @@ public abstract class AbstractStage extends Stage {
         grid.setHgap(Constants.PADDING_SMALL);
         grid.setVgap(Constants.PADDING_SMALL);
         grid.setPadding(new Insets(Constants.PADDING_MEDIUM));
+        
 
         //Creates the VBox
         pane = new VBox();
@@ -69,6 +70,7 @@ public abstract class AbstractStage extends Stage {
         pane.getChildren().add(this.messages);
         pane.getChildren().add(grid);
         pane.setStyle(Constants.PANE_BACKGROUND);
+        grid.setPrefWidth(Constants.WIDTH);
 
         //sets and shows the scene
         this.setScene(new Scene(pane, Constants.WIDTH, Constants.HEIGHT));
@@ -117,11 +119,12 @@ public abstract class AbstractStage extends Stage {
 
         if (backToMenu) { //Creates the backToMenu button if needed
             Button menuButton = new Button(Constants.BACK_BUTTON_TEXT);
-            menuButton.setPrefSize(100, 20);
+            menuButton.setPrefSize(Constants.BACK_BUTTON_WIDTH, Constants.BACK_BUTTON_HEIGHT);
             menuButton.setOnMouseClicked(e -> {
                 this.hide();
                 new MainStage(serialHelper, userPath);
             });
+            menuButton.setStyle(Constants.BUTTONS_STYLE);
             header.add(menuButton, 2, 0);
             GridPane.setHalignment(menuButton, HPos.RIGHT);
         } else {
@@ -162,7 +165,7 @@ public abstract class AbstractStage extends Stage {
             if (ke.keyexist()) success(Constants.KEYSET_EXISTS); //checks if the key set exists
             else error(Constants.KEYSET_NOT_EXISTS);
         } catch (OperationNotSupportedException e) {
-            error(Constants.KEYSET_NOT_EXISTS);
+            error(Constants.UNSUPPORTED_OPERATION);
         }
     }
 

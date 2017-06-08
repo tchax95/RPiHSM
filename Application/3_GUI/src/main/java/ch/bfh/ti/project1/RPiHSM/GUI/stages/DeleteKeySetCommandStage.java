@@ -44,7 +44,7 @@ public class DeleteKeySetCommandStage extends AbstractStage {
                 	error(Constants.KEYSET_DELETION_NOT_SUCCESS);
                 }
             } catch (OperationNotSupportedException e) {
-                error(Constants.KEYSET_DELETION_NOT_SUCCESS);
+                error(Constants.UNSUPPORTED_OPERATION);
             }
         });
 

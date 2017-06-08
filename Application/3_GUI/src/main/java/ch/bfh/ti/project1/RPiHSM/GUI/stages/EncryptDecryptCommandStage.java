@@ -59,7 +59,7 @@ public class EncryptDecryptCommandStage extends AbstractStage {
                             error(Constants.ENCRYPT_NOT_SUCCESS);
                         }
                     } catch (OperationNotSupportedException e) {
-                        error(Constants.UNSUPPORTED_COM_OPERATION);
+                        error(Constants.UNSUPPORTED_OPERATION);
                     } catch (FileNotFoundException e) {
                         error(Constants.FILE_NOT_FOUND);
                     }
@@ -72,7 +72,7 @@ public class EncryptDecryptCommandStage extends AbstractStage {
                             error(Constants.DECRYPT_NOT_SUCCESS);
                         }
                     } catch (OperationNotSupportedException e) {
-                        error(Constants.UNSUPPORTED_COM_OPERATION);
+                        error(Constants.UNSUPPORTED_OPERATION);
                     } catch (FileNotFoundException e) {
                         error(Constants.FILE_NOT_FOUND);
                     }

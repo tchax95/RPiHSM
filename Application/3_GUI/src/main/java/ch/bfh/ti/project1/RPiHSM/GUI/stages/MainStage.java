@@ -43,6 +43,11 @@ public class MainStage extends AbstractStage {
         Label titleContainer3 = new Label(Constants.MAIN_STAGE_CONTAINER3_TITLE);
         Label titleContainer4 = new Label(Constants.MAIN_STAGE_CONTAINER4_TITLE);
         
+        titleContainer1.setStyle(Constants.SECTIONS_TITLES_STYLE);
+        titleContainer2.setStyle(Constants.SECTIONS_TITLES_STYLE);
+        titleContainer3.setStyle(Constants.SECTIONS_TITLES_STYLE);
+        titleContainer4.setStyle(Constants.SECTIONS_TITLES_STYLE);
+        
         //creates subcontainers
         HBox subContainer1 = new HBox();
         HBox subContainer2 = new HBox();
