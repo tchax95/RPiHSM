@@ -61,13 +61,12 @@ public final class Constants {
     public final static String DEMOTE_ERROR = "The demotion has not been successful (for more information check the user manual)";
     public final static String REVOKE_ERROR = "The key deletion (revoke) has not been successful (for more information check the user manual)";
     public final static String WRONG_CREDENTIALS = "Wrong user or password!";
-    public final static String FILE_COPY_ERROR = "An error has occurred in the copying process";
     public static final String KEY_SUCCESS = "The key creation has been successful";
     public static final String KEY_SET_SUCCESS = "The key set creation has been successful";
     public static final String DECRYPT_SUCCESS = "The decryption has been successful";
     public static final String DELETE_KEY_SET_SUCCESS = "The key set deletion has been successful";
     public static final String ENCRYPT_SUCCESS = "The encryption has been successful";
-    public static final String PUBLIC_KEY_SUCCESS = "The key creation has been successful";
+    public static final String PUBLIC_KEY_SUCCESS = "The public key exportation has been successful";
     public static final String SIGN_SUCCESS = "The signing operation has been successful";
     public static final String VERIFY_SUCCESS = "The verification has been successful";
     public final static String PROMOTE_SUCCESS = "The key promotion has been successful";
