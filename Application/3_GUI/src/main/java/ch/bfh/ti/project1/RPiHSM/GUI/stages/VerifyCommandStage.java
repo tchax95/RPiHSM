@@ -89,9 +89,11 @@ public class VerifyCommandStage extends AbstractStage {
                 else{
                 	error(Constants.VERIFY_NOT_SUCCESS);
                 }
-            } catch (OperationNotSupportedException | FileNotFoundException e1) {
-                error(Constants.VERIFY_NOT_SUCCESS);
-            }
+            } catch (OperationNotSupportedException e1) {
+                error(Constants.UNSUPPORTED_OPERATION);
+            } catch (FileNotFoundException e1) {
+            	error(Constants.FILE_NOT_FOUND);
+			}
         });
 
         //on focus out checks if the key set exists

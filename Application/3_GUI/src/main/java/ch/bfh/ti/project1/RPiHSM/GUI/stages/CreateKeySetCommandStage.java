@@ -62,10 +62,10 @@ public class CreateKeySetCommandStage extends AbstractStage {
                 	clearElements();
                     success(Constants.KEYSET_CREATION_SUCCESS);
                 } else {
-                    error(Constants.KEYSET_EXISTS);
+                    error(Constants.KEYSET_CREATION_NOT_SUCCESS);
                 }
             } catch (OperationNotSupportedException e) {
-                error(Constants.PORT_IN_USE);
+                error(Constants.UNSUPPORTED_OPERATION);
             }
         });
 

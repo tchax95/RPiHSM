@@ -57,7 +57,7 @@ public class PromoteDemoteCommandStage extends AbstractStage {
                     	error(Constants.PROMOTE_NOT_SUCCESS);
                     }
                 } catch (OperationNotSupportedException e1) {
-                    error(Constants.PROMOTE_NOT_SUCCESS);
+                    error(Constants.UNSUPPORTED_OPERATION);
                 }
             } else { //Action: demote
                 try {
@@ -69,7 +69,7 @@ public class PromoteDemoteCommandStage extends AbstractStage {
                     	error(Constants.DEMOTE_NOT_SUCCESS);
                     }
                 } catch (OperationNotSupportedException e1) {
-                    error(Constants.DEMOTE_NOT_SUCCESS);
+                    error(Constants.UNSUPPORTED_OPERATION);
                 }
             }
         });

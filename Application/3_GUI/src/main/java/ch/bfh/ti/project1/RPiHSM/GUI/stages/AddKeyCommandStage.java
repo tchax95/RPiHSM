@@ -54,7 +54,7 @@ public class AddKeyCommandStage extends AbstractStage {
                     error(Constants.KEY_NOT_SUCCESS);
                 }
             } catch (OperationNotSupportedException e) {
-                error(Constants.PORT_IN_USE);
+                error(Constants.UNSUPPORTED_OPERATION);
             }
         });
 

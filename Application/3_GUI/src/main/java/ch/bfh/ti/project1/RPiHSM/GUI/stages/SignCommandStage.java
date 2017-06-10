@@ -63,9 +63,11 @@ public class SignCommandStage extends AbstractStage {
                 else{
                 	error(Constants.SIGN_NOT_SUCCESS);
                 }
-            } catch (OperationNotSupportedException | FileNotFoundException e1) {
-                error(Constants.SIGN_NOT_SUCCESS);
-            }
+            } catch (OperationNotSupportedException e1) {
+                error(Constants.UNSUPPORTED_OPERATION);
+            } catch (FileNotFoundException e1) {
+            	error(Constants.FILE_NOT_FOUND);
+			}
         });
 
         //disables the file chooser if the key set does not exist

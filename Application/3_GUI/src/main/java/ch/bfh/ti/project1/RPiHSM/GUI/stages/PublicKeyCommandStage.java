@@ -10,7 +10,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 
 import javax.naming.OperationNotSupportedException;
+
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 
@@ -73,9 +75,17 @@ public class PublicKeyCommandStage extends AbstractStage {
                 } else {
                     error(Constants.PUBLIC_KEY_NOT_SUCCESS);
                 }
-            } catch (OperationNotSupportedException | KeySetNotAsymmetricException | KeySetIsEmptyException | IOException e1) {
-                error(Constants.PUBLIC_KEY_NOT_SUCCESS);
-            }
+            } catch (OperationNotSupportedException e1) {
+                error(Constants.UNSUPPORTED_OPERATION);
+            } catch (KeySetIsEmptyException keySetIsEmpty) {
+            	error(Constants.KEY_SET_IS_EMPTY);
+            } catch (FileNotFoundException e1) {
+            	error(Constants.FILE_NOT_FOUND);
+            } catch (KeySetNotAsymmetricException e1) {
+            	error(Constants.KEY_SET_NOT_ASYMMETRIC);
+            } catch (IOException e1) {
+            	error(Constants.UNSUPPORTED_OPERATION);
+			}
         });
 
         //On mouse clicked, sets the destination directory as the directory selected with the DirectoryChooser

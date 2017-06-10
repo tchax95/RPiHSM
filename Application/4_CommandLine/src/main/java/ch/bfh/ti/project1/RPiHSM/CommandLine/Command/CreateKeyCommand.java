@@ -66,7 +66,7 @@ public class CreateKeyCommand implements CommandI {
                 return KEY_ERROR;
             }
         } catch (OperationNotSupportedException e) {
-            return UNSUPPORTED_COM_OPERATION;
+            return UNSUPPORTED_OPERATION;
         }
 
     }

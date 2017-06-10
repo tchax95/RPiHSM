@@ -3,7 +3,9 @@ package ch.bfh.ti.project1.RPiHSM.GUI;
 import ch.bfh.ti.project1.RPiHSM.GUI.stages.*;
 import gnu.io.PortInUseException;
 import gnu.io.UnsupportedCommOperationException;
+
 import ch.bfh.ti.project1.RPiHSM.API.SerialHelper;
+import ch.bfh.ti.project1.RPiHSM.API.Exception.SerialPortException;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -30,11 +32,15 @@ public class GUI extends Application {
         try {
             serialHelper = new SerialHelper();
             new LoginStage(serialHelper); //creates the first stage
-        } catch (PortInUseException | UnsupportedCommOperationException e) {
-            new ErrorStage(Constants.PORT_IN_USE); //if the port is in use
-        } catch (Exception e) {
-            new ErrorStage(Constants.PORT_NOT_CONNECTED); //if the port is not connected
-        }
+        } catch (PortInUseException e) {
+            new ErrorStage(Constants.PORT_IN_USE);
+        } catch (UnsupportedCommOperationException e) {
+        	new ErrorStage(Constants.UNSUPPORTED_COM_OPERATION);
+        } catch (SerialPortException e) {
+        	new ErrorStage(Constants.PORT_ERROR);
+        } catch (NullPointerException e) {
+			new ErrorStage(Constants.PORT_NOT_CONNECTED);
+		}
     }
 
     /**
