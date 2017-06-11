@@ -55,14 +55,6 @@ public class SignCommand implements CommandI {
      */
     @Override
     public String execute() {
-        int index = filePath.lastIndexOf('.');
-        File signatureFile = new File(filePath.substring(0, index) + "-signature.bin");
-        try {
-            FileUtils.copyFile(new File(filePath), signatureFile); //file copy
-        } catch (IOException e2) {
-            return b.getString("FILE_COPY_ERROR");
-        }
-
         Sign s = new Sign(serialHelper, userPath, keySetName, signatureFile.getAbsolutePath());
 
         try {
