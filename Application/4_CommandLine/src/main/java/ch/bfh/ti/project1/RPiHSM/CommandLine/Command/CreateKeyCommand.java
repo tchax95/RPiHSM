@@ -9,6 +9,8 @@ import com.beust.jcommander.Parameter;
 import javax.naming.OperationNotSupportedException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import static ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.Constants.*;
 
@@ -20,7 +22,7 @@ import static ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.Constants.*;
 public class CreateKeyCommand implements CommandI {
 
     private SerialHelper serialHelper;
-
+    private ResourceBundle b;
     private String userPath;
 
 
@@ -46,6 +48,7 @@ public class CreateKeyCommand implements CommandI {
     public CreateKeyCommand(String userPath, SerialHelper serialHelper) {
         this.userPath = userPath;
         this.serialHelper = serialHelper;
+        this.b = ResourceBundle.getBundle("language",Locale.getDefault());
     }
 
 
@@ -61,12 +64,12 @@ public class CreateKeyCommand implements CommandI {
 
         try {
             if (ck.create()) {
-                return KEY_SUCCESS;
+                return b.getString("KEY_SUCCESS");
             } else {
-                return KEY_ERROR;
+                return b.getString("KEY_ERROR");
             }
         } catch (OperationNotSupportedException e) {
-            return UNSUPPORTED_OPERATION;
+            return b.getString("UNSUPPORTED_OPERATION");
         }
 
     }

@@ -7,6 +7,8 @@ import com.beust.jcommander.Parameter;
 import javax.naming.OperationNotSupportedException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import static ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.Constants.*;
 
@@ -17,7 +19,7 @@ import static ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.Constants.*;
 public class DeleteKeySetCommand implements CommandI {
 
     private SerialHelper serialHelper;
-
+    private ResourceBundle b;
     private String userPath;
 
 
@@ -36,6 +38,7 @@ public class DeleteKeySetCommand implements CommandI {
     public DeleteKeySetCommand(String userPath, SerialHelper serialHelper) {
         this.userPath = userPath;
         this.serialHelper = serialHelper;
+        this.b = ResourceBundle.getBundle("language",Locale.getDefault());
     }
 
     /**
@@ -48,12 +51,12 @@ public class DeleteKeySetCommand implements CommandI {
         DeleteKeySet dks = new DeleteKeySet(serialHelper, userPath, keySetName);
         try {
             if (dks.delete()) {
-                return DELETE_KEY_SET_SUCCESS;
+                return b.getString("DELETE_KEY_SET_SUCCESS");
             } else {
-                return DELETE_KEY_SET_ERROR;
+                return b.getString("DELETE_KEY_SET_ERROR");
             }
         } catch (OperationNotSupportedException e) {
-            return UNSUPPORTED_OPERATION;
+            return b.getString("UNSUPPORTED_OPERATION");
         }
     }
 

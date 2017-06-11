@@ -1,5 +1,8 @@
 package ch.bfh.ti.project1.RPiHSM.CommandLine.Utils;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import com.beust.jcommander.IParameterValidator;
 import com.beust.jcommander.ParameterException;
 
@@ -11,7 +14,12 @@ import com.beust.jcommander.ParameterException;
  * @see <a href="http://jcommander.org/#_parameter_validation">JCommander parameter validation</a>
  */
 public class KeySizeValidator implements IParameterValidator {
-
+	private ResourceBundle b;
+	
+	public KeySizeValidator() {
+		this.b = ResourceBundle.getBundle("language",Locale.getDefault());
+	}
+	
     /**
      * Validates the given value.
      *
@@ -22,7 +30,7 @@ public class KeySizeValidator implements IParameterValidator {
     @Override
     public void validate(String name, String value) throws ParameterException {
         if (Integer.parseInt(value) < 0 && Integer.parseInt(value) % 2 != 0) { //the key must be even and grater than 0
-            throw new ParameterException(Constants.ILLEGAL_ARGUMENT);
+            throw new ParameterException(b.getString("ILLEGAL_ARGUMENT"));
         }
     }
 }

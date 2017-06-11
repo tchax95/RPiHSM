@@ -13,8 +13,6 @@ import javax.naming.OperationNotSupportedException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Files;
 
 /**
  * <h1>PublicKeyCommandStage</h1>
@@ -24,7 +22,6 @@ public class PublicKeyCommandStage extends AbstractStage {
     private Button executeButton, directoryChooserButton;
     private Label keySetLabel;
     private TextField keySetTextField;
-    private Label results;
     private DirectoryChooser destinationDirectoryChooser;
     private File destinationFolder;
 
@@ -39,19 +36,18 @@ public class PublicKeyCommandStage extends AbstractStage {
         super(serialHelper, userPath);
 
         //creates the scene objects
-        this.sceneTitle = new Label(Constants.PUBLIC_KEY_COMMAND_TITLE);
-        executeButton = new Button(Constants.BUTTON_TEXT_PUBLICKEY);
-        directoryChooserButton = new Button(Constants.DIRECTORY_CHOOSER_SELECT_DESTINATION);
+        this.sceneTitle = new Label(b.getString("PUBLIC_KEY_COMMAND_TITLE"));
+        executeButton = new Button(b.getString("BUTTON_TEXT_PUBLICKEY"));
+        directoryChooserButton = new Button(b.getString("DIRECTORY_CHOOSER_SELECT_DESTINATION"));
         destinationDirectoryChooser = new DirectoryChooser();
         destinationFolder = new File("");
-        keySetLabel = new Label(Constants.KEY_SET);
+        keySetLabel = new Label(b.getString("KEY_SET"));
         keySetTextField = new TextField();
-        results = new Label();
 
         //disables the file chooser if the key set does not exist
-        directoryChooserButton.disableProperty().bind(messages.textProperty().isEqualTo(Constants.KEYSET_EXISTS).not());
+        directoryChooserButton.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("KEYSET_EXISTS")).not());
         //disables the execute button if no file has been selected
-        executeButton.disableProperty().bind(messages.textProperty().isEqualTo(Constants.FILE_CHOOSER_DESTINATION_SELECTED).not());
+        executeButton.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("FILE_CHOOSER_DESTINATION_SELECTED")).not());
 
         //On mouse click, deletes all the files of the destination folder and tries to get all public keys of the given key set
         executeButton.setOnMouseClicked(e -> {
@@ -66,26 +62,19 @@ public class PublicKeyCommandStage extends AbstractStage {
             try {
                 if (pk.generate()) {
                 	clearElements();
-                    success(Constants.PUBLIC_KEY_SUCCESS);
-                    File[] keys = destinationFolder.listFiles();
-                    for (int i = 0; i < keys.length; i++) {//reads all files in the destination folder to the results Label
-                        results.setText(results.getText() + "\n\n" + keys[i].getAbsolutePath());
-                        results.setText(results.getText() + "\n" + Files.readAllLines(keys[i].toPath()));
-                    }
+                    success(b.getString("PUBLIC_KEY_SUCCESS"));
                 } else {
-                    error(Constants.PUBLIC_KEY_NOT_SUCCESS);
+                    error(b.getString("PUBLIC_KEY_NOT_SUCCESS"));
                 }
             } catch (OperationNotSupportedException e1) {
-                error(Constants.UNSUPPORTED_OPERATION);
+                error(b.getString("UNSUPPORTED_OPERATION"));
             } catch (KeySetIsEmptyException keySetIsEmpty) {
-            	error(Constants.KEY_SET_IS_EMPTY);
+            	error(b.getString("KEY_SET_IS_EMPTY"));
             } catch (FileNotFoundException e1) {
-            	error(Constants.FILE_NOT_FOUND);
+            	error(b.getString("FILE_NOT_FOUND"));
             } catch (KeySetNotAsymmetricException e1) {
-            	error(Constants.KEY_SET_NOT_ASYMMETRIC);
-            } catch (IOException e1) {
-            	error(Constants.UNSUPPORTED_OPERATION);
-			}
+            	error(b.getString("KEY_SET_NOT_ASYMMETRIC"));
+            }
         });
 
         //On mouse clicked, sets the destination directory as the directory selected with the DirectoryChooser
@@ -93,15 +82,11 @@ public class PublicKeyCommandStage extends AbstractStage {
             File temp = destinationDirectoryChooser.showDialog(this);
             if (temp != null) {
                 destinationFolder = temp;
-                success(Constants.FILE_CHOOSER_DESTINATION_SELECTED);
+                success(b.getString("FILE_CHOOSER_DESTINATION_SELECTED"));
             } else {
-                error(Constants.FILE_CHOOSER_DESTINATION_NOT_SELECTED);
+                error(b.getString("FILE_CHOOSER_DESTINATION_NOT_SELECTED"));
             }
         });
-
-        //sets the width as maximal
-        results.minWidth(this.getWidth());
-        results.maxWidth(this.getWidth());
 
         //on focus out checks if the key set exists
         keySetTextField.focusedProperty().addListener((obs, oldVal, newVal) -> {
@@ -117,7 +102,6 @@ public class PublicKeyCommandStage extends AbstractStage {
         grid.add(keySetTextField, 1, 0);
         grid.add(directoryChooserButton, 2, 0);
         grid.add(executeButton, 3, 0);
-        grid.add(results, 0, 1, 4, 1);
     }
     
     /**

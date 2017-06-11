@@ -11,6 +11,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import static ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.Constants.*;
 
@@ -22,7 +24,7 @@ import static ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.Constants.*;
 public class PublicKeyCommand implements CommandI {
 
     private SerialHelper serialHelper;
-
+    private ResourceBundle b;
     private String userPath;
 
 
@@ -44,6 +46,7 @@ public class PublicKeyCommand implements CommandI {
     public PublicKeyCommand(String userPath, SerialHelper serialHelper) {
         this.userPath = userPath;
         this.serialHelper = serialHelper;
+        this.b = ResourceBundle.getBundle("language",Locale.getDefault());
     }
 
     /**
@@ -62,18 +65,18 @@ public class PublicKeyCommand implements CommandI {
 
         try {
             if (pk.generate()) {
-                return PUBLIC_KEY_SUCCESS;
+                return b.getString("PUBLIC_KEY_SUCCESS");
             } else {
-                return PUBLIC_KEY_ERROR;
+                return b.getString("PUBLIC_KEY_ERROR");
             }
         } catch (OperationNotSupportedException e) {
-            return UNSUPPORTED_OPERATION;
+            return b.getString("UNSUPPORTED_OPERATION");
         } catch (KeySetIsEmptyException keySetIsEmpty) {
-            return KEY_SET_IS_EMPTY;
+            return b.getString("KEY_SET_IS_EMPTY");
         } catch (FileNotFoundException e) {
-            return FILE_NOT_FOUND;
+            return b.getString("FILE_NOT_FOUND");
         } catch (KeySetNotAsymmetricException keySetNotAsymmetric) {
-            return KEY_SET_NOT_ASYMMETRIC;
+            return b.getString("KEY_SET_NOT_ASYMMETRIC");
         }
 
     }

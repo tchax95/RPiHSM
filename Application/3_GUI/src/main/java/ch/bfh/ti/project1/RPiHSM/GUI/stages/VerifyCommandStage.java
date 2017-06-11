@@ -33,35 +33,35 @@ public class VerifyCommandStage extends AbstractStage {
         super(serialHelper, userPath);
 
         //creates the scene objects
-        this.sceneTitle = new Label(Constants.VERIFY_COMMAND_TITLE);
-        executeButton = new Button(Constants.BUTTON_TEXT_VERIFY);
-        signFileChooserButton = new Button(Constants.FILE_CHOOSER_BUTTON_SIGNED);
-        verifyFileChooserButton = new Button(Constants.FILE_CHOOSER_BUTTON_VERIFY);
-        keySetLabel = new Label(Constants.KEY_SET);
+        this.sceneTitle = new Label(b.getString("VERIFY_COMMAND_TITLE"));
+        executeButton = new Button(b.getString("BUTTON_TEXT_VERIFY"));
+        signFileChooserButton = new Button(b.getString("FILE_CHOOSER_BUTTON_SIGNED"));
+        verifyFileChooserButton = new Button(b.getString("FILE_CHOOSER_BUTTON_VERIFY"));
+        keySetLabel = new Label(b.getString("KEY_SET"));
         keySetTextField = new TextField();
-        signFileLabel = new Label(Constants.SIGN_FILE_LABEL);
-        verifyFileLabel = new Label(Constants.VERIFY_FILE_LABEL);
+        signFileLabel = new Label(b.getString("SIGN_FILE_LABEL"));
+        verifyFileLabel = new Label(b.getString("VERIFY_FILE_LABEL"));
         filechooser = new FileChooser();
         signatureFilePathLabel = new Label();
         verifyFilePathLabel = new Label();
 
         //disables the sign file chooser if the key set does not exist
-        signFileChooserButton.disableProperty().bind(messages.textProperty().isEqualTo(Constants.KEYSET_EXISTS).not());
+        signFileChooserButton.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("KEYSET_EXISTS")).not());
         //disables the verify file chooser if the signature file has not been selected
-        verifyFileChooserButton.disableProperty().bind(messages.textProperty().isEqualTo(Constants.FILE_CHOOSER_SIGNATURE_CHOSEN).not());
+        verifyFileChooserButton.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("FILE_CHOOSER_SIGNATURE_CHOSEN")).not());
         //disables the execute button if the verify file has not been selected
-        executeButton.disableProperty().bind(messages.textProperty().isEqualTo(Constants.FILE_CHOOSER_FILE_AND_SIGNATURE_CHOSEN).not());
+        executeButton.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("FILE_CHOOSER_FILE_AND_SIGNATURE_CHOSEN")).not());
 
         //On mouse clicked, sets the signature file as the file selected with the filechooser
         signFileChooserButton.setOnMouseClicked(e -> {
             try {
                 signFile = filechooser.showOpenDialog(this);
                 signatureFilePathLabel.setText(signFile.getAbsolutePath());
-                if (messages.getText().equals(Constants.FILE_CHOOSER_FILE_CHOSEN))
-                    success(Constants.FILE_CHOOSER_FILE_AND_SIGNATURE_CHOSEN);
-                else success(Constants.FILE_CHOOSER_SIGNATURE_CHOSEN);
+                if (messages.getText().equals(b.getString("FILE_CHOOSER_FILE_CHOSEN")))
+                    success(b.getString("FILE_CHOOSER_FILE_AND_SIGNATURE_CHOSEN"));
+                else success(b.getString("FILE_CHOOSER_SIGNATURE_CHOSEN"));
             } catch (Exception e2) {
-                signatureFilePathLabel.setText(Constants.FILE_CHOOSER_NO_FILE_CHOSEN);
+                signatureFilePathLabel.setText(b.getString("FILE_CHOOSER_NO_FILE_CHOSEN"));
             }
         });
 
@@ -70,11 +70,11 @@ public class VerifyCommandStage extends AbstractStage {
             try {
                 verifyFile = filechooser.showOpenDialog(this);
                 verifyFilePathLabel.setText(verifyFile.getAbsolutePath());
-                if (messages.getText().equals(Constants.FILE_CHOOSER_SIGNATURE_CHOSEN))
-                    success(Constants.FILE_CHOOSER_FILE_AND_SIGNATURE_CHOSEN);
-                else success(Constants.FILE_CHOOSER_FILE_CHOSEN);
+                if (messages.getText().equals(b.getString("FILE_CHOOSER_SIGNATURE_CHOSEN")))
+                    success(b.getString("FILE_CHOOSER_FILE_AND_SIGNATURE_CHOSEN"));
+                else success(b.getString("FILE_CHOOSER_FILE_CHOSEN"));
             } catch (Exception e2) {
-                verifyFilePathLabel.setText(Constants.FILE_CHOOSER_NO_FILE_CHOSEN);
+                verifyFilePathLabel.setText(b.getString("FILE_CHOOSER_NO_FILE_CHOSEN"));
             }
         });
 
@@ -84,15 +84,15 @@ public class VerifyCommandStage extends AbstractStage {
             try {
                 if (v.verify()){
                 	clearElements();
-                	success(Constants.VERIFY_SUCCESS);
+                	success(b.getString("VERIFY_SUCCESS"));
                 }
                 else{
-                	error(Constants.VERIFY_NOT_SUCCESS);
+                	error(b.getString("VERIFY_NOT_SUCCESS"));
                 }
             } catch (OperationNotSupportedException e1) {
-                error(Constants.UNSUPPORTED_OPERATION);
+                error(b.getString("UNSUPPORTED_OPERATION"));
             } catch (FileNotFoundException e1) {
-            	error(Constants.FILE_NOT_FOUND);
+            	error(b.getString("FILE_NOT_FOUND"));
 			}
         });
 

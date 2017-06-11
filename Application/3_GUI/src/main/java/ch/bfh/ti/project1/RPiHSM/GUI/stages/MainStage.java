@@ -25,28 +25,28 @@ public class MainStage extends AbstractStage {
         super(serialHelper, userPath);
 
         //creates the scene objects
-        this.sceneTitle = new Label(Constants.MAIN_STAGE_TITLE);
-        addKeyButton = new Button(Constants.MAIN_STAGE_BUTTON_ADDKEY);
-        createKeySetButton = new Button(Constants.MAIN_STAGE_BUTTON_CREATEKEYSET);
-        deleteKeySetButton = new Button(Constants.MAIN_STAGE_BUTTON_DELETEKEYSET);
-        decryptButton = new Button(Constants.MAIN_STAGE_BUTTON_DECRYPT);
-        encryptButton = new Button(Constants.MAIN_STAGE_BUTTON_ENCRYPT);
-        promoteDemoteButton = new Button(Constants.MAIN_STAGE_BUTTON_PROMOTE_DEMOTE);
-        pubKeyButton = new Button(Constants.MAIN_STAGE_BUTTON_PUBLICKEY);
-        revokeButton = new Button(Constants.MAIN_STAGE_BUTTON_REVOKE);
-        signButton = new Button(Constants.MAIN_STAGE_BUTTON_SIGN);
-        verifyButton = new Button(Constants.MAIN_STAGE_BUTTON_VERIFY);
+        this.sceneTitle = new Label(b.getString("MAIN_STAGE_TITLE"));
+        addKeyButton = new Button(b.getString("MAIN_STAGE_BUTTON_ADDKEY"));
+        createKeySetButton = new Button(b.getString("MAIN_STAGE_BUTTON_CREATEKEYSET"));
+        deleteKeySetButton = new Button(b.getString("MAIN_STAGE_BUTTON_DELETEKEYSET"));
+        decryptButton = new Button(b.getString("MAIN_STAGE_BUTTON_DECRYPT"));
+        encryptButton = new Button(b.getString("MAIN_STAGE_BUTTON_ENCRYPT"));
+        promoteDemoteButton = new Button(b.getString("MAIN_STAGE_BUTTON_PROMOTE_DEMOTE"));
+        pubKeyButton = new Button(b.getString("MAIN_STAGE_BUTTON_PUBLICKEY"));
+        revokeButton = new Button(b.getString("MAIN_STAGE_BUTTON_REVOKE"));
+        signButton = new Button(b.getString("MAIN_STAGE_BUTTON_SIGN"));
+        verifyButton = new Button(b.getString("MAIN_STAGE_BUTTON_VERIFY"));
         
         //creates container titles
-        Label titleContainer1 = new Label(Constants.MAIN_STAGE_CONTAINER1_TITLE);
-        Label titleContainer2 = new Label(Constants.MAIN_STAGE_CONTAINER2_TITLE);
-        Label titleContainer3 = new Label(Constants.MAIN_STAGE_CONTAINER3_TITLE);
-        Label titleContainer4 = new Label(Constants.MAIN_STAGE_CONTAINER4_TITLE);
+        Label titleContainer1 = new Label(b.getString("MAIN_STAGE_CONTAINER1_TITLE"));
+        Label titleContainer2 = new Label(b.getString("MAIN_STAGE_CONTAINER2_TITLE"));
+        Label titleContainer3 = new Label(b.getString("MAIN_STAGE_CONTAINER3_TITLE"));
+        Label titleContainer4 = new Label(b.getString("MAIN_STAGE_CONTAINER4_TITLE"));
         
-        titleContainer1.setStyle(Constants.SECTIONS_TITLES_STYLE);
-        titleContainer2.setStyle(Constants.SECTIONS_TITLES_STYLE);
-        titleContainer3.setStyle(Constants.SECTIONS_TITLES_STYLE);
-        titleContainer4.setStyle(Constants.SECTIONS_TITLES_STYLE);
+        titleContainer1.setStyle(SECTIONS_TITLES_STYLE);
+        titleContainer2.setStyle(SECTIONS_TITLES_STYLE);
+        titleContainer3.setStyle(SECTIONS_TITLES_STYLE);
+        titleContainer4.setStyle(SECTIONS_TITLES_STYLE);
         
         //creates subcontainers
         HBox subContainer1 = new HBox();
@@ -70,54 +70,54 @@ public class MainStage extends AbstractStage {
         VBox masterContainer = new VBox(container1,container2,container3,container4);
         
         //Sets the paddings
-        masterContainer.setPadding(new Insets(Constants.PADDING_SMALL));
-        container1.setPadding(new Insets(Constants.PADDING_SMALL));
-        container2.setPadding(new Insets(Constants.PADDING_SMALL));
-        container3.setPadding(new Insets(Constants.PADDING_SMALL));
-        container4.setPadding(new Insets(Constants.PADDING_SMALL));
+        masterContainer.setPadding(new Insets(PADDING_SMALL));
+        container1.setPadding(new Insets(PADDING_SMALL));
+        container2.setPadding(new Insets(PADDING_SMALL));
+        container3.setPadding(new Insets(PADDING_SMALL));
+        container4.setPadding(new Insets(PADDING_SMALL));
         
         //Sets the vertical spacing
-        masterContainer.setSpacing(Constants.PADDING_SMALL);
+        masterContainer.setSpacing(PADDING_SMALL);
         container1.setSpacing(10);
         container2.setSpacing(10);
         container3.setSpacing(10);
         container4.setSpacing(10);
         
         //sets the horizontal spacing
-        subContainer1.setSpacing(Constants.PADDING_SMALL);
-        subContainer2.setSpacing(Constants.PADDING_SMALL);
-        subContainer3.setSpacing(Constants.PADDING_SMALL);
-        subContainer4.setSpacing(Constants.PADDING_SMALL);
+        subContainer1.setSpacing(PADDING_SMALL);
+        subContainer2.setSpacing(PADDING_SMALL);
+        subContainer3.setSpacing(PADDING_SMALL);
+        subContainer4.setSpacing(PADDING_SMALL);
         
         //Sets the buttons size
-        addKeyButton.setMinWidth(Constants.MAIN_MENU_BUTTON_SIZE);
-        createKeySetButton.setMinWidth(Constants.MAIN_MENU_BUTTON_SIZE);
-        deleteKeySetButton.setMinWidth(Constants.MAIN_MENU_BUTTON_SIZE);
-        decryptButton.setMinWidth(Constants.MAIN_MENU_BUTTON_SIZE);
-        encryptButton.setMinWidth(Constants.MAIN_MENU_BUTTON_SIZE);
-        promoteDemoteButton.setMinWidth(Constants.MAIN_MENU_BUTTON_SIZE);
-        pubKeyButton.setMinWidth(Constants.MAIN_MENU_BUTTON_SIZE);
-        revokeButton.setMinWidth(Constants.MAIN_MENU_BUTTON_SIZE);
-        signButton.setMinWidth(Constants.MAIN_MENU_BUTTON_SIZE);
-        verifyButton.setMinWidth(Constants.MAIN_MENU_BUTTON_SIZE);
+        addKeyButton.setMinWidth(MAIN_MENU_BUTTON_SIZE);
+        createKeySetButton.setMinWidth(MAIN_MENU_BUTTON_SIZE);
+        deleteKeySetButton.setMinWidth(MAIN_MENU_BUTTON_SIZE);
+        decryptButton.setMinWidth(MAIN_MENU_BUTTON_SIZE);
+        encryptButton.setMinWidth(MAIN_MENU_BUTTON_SIZE);
+        promoteDemoteButton.setMinWidth(MAIN_MENU_BUTTON_SIZE);
+        pubKeyButton.setMinWidth(MAIN_MENU_BUTTON_SIZE);
+        revokeButton.setMinWidth(MAIN_MENU_BUTTON_SIZE);
+        signButton.setMinWidth(MAIN_MENU_BUTTON_SIZE);
+        verifyButton.setMinWidth(MAIN_MENU_BUTTON_SIZE);
         
         //Sets the buttons style
-        addKeyButton.setStyle(Constants.BUTTONS_STYLE);
-        createKeySetButton.setStyle(Constants.BUTTONS_STYLE);
-        deleteKeySetButton.setStyle(Constants.BUTTONS_STYLE);
-        decryptButton.setStyle(Constants.BUTTONS_STYLE);
-        encryptButton.setStyle(Constants.BUTTONS_STYLE);
-        promoteDemoteButton.setStyle(Constants.BUTTONS_STYLE);
-        pubKeyButton.setStyle(Constants.BUTTONS_STYLE);
-        revokeButton.setStyle(Constants.BUTTONS_STYLE);
-        signButton.setStyle(Constants.BUTTONS_STYLE);
-        verifyButton.setStyle(Constants.BUTTONS_STYLE);
+        addKeyButton.setStyle(BUTTONS_STYLE);
+        createKeySetButton.setStyle(BUTTONS_STYLE);
+        deleteKeySetButton.setStyle(BUTTONS_STYLE);
+        decryptButton.setStyle(BUTTONS_STYLE);
+        encryptButton.setStyle(BUTTONS_STYLE);
+        promoteDemoteButton.setStyle(BUTTONS_STYLE);
+        pubKeyButton.setStyle(BUTTONS_STYLE);
+        revokeButton.setStyle(BUTTONS_STYLE);
+        signButton.setStyle(BUTTONS_STYLE);
+        verifyButton.setStyle(BUTTONS_STYLE);
         
         //Sets the containers style
-        container1.setStyle(Constants.CONTAINERS_STYLE);
-        container2.setStyle(Constants.CONTAINERS_STYLE);
-        container3.setStyle(Constants.CONTAINERS_STYLE);
-        container4.setStyle(Constants.CONTAINERS_STYLE);
+        container1.setStyle(CONTAINERS_STYLE);
+        container2.setStyle(CONTAINERS_STYLE);
+        container3.setStyle(CONTAINERS_STYLE);
+        container4.setStyle(CONTAINERS_STYLE);
 
         //Sets the actions for each button
         //each button opens a new stage

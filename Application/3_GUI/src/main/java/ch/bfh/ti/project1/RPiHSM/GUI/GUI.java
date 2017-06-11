@@ -4,6 +4,9 @@ import ch.bfh.ti.project1.RPiHSM.GUI.stages.*;
 import gnu.io.PortInUseException;
 import gnu.io.UnsupportedCommOperationException;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import ch.bfh.ti.project1.RPiHSM.API.SerialHelper;
 import ch.bfh.ti.project1.RPiHSM.API.Exception.SerialPortException;
 import javafx.application.Application;
@@ -28,18 +31,18 @@ public class GUI extends Application {
     @Override
     public void start(Stage primaryStage) {
         SerialHelper serialHelper;
-
+        ResourceBundle bundle = ResourceBundle.getBundle("language",Locale.getDefault(), new UTF8Control());
         try {
             serialHelper = new SerialHelper();
             new LoginStage(serialHelper); //creates the first stage
         } catch (PortInUseException e) {
-            new ErrorStage(Constants.PORT_IN_USE);
+            new ErrorStage(bundle.getString("PORT_IN_USE"));
         } catch (UnsupportedCommOperationException e) {
-        	new ErrorStage(Constants.UNSUPPORTED_COM_OPERATION);
+        	new ErrorStage(bundle.getString("UNSUPPORTED_COM_OPERATION"));
         } catch (SerialPortException e) {
-        	new ErrorStage(Constants.PORT_ERROR);
+        	new ErrorStage(bundle.getString("PORT_ERROR"));
         } catch (NullPointerException e) {
-			new ErrorStage(Constants.PORT_NOT_CONNECTED);
+			new ErrorStage(bundle.getString("PORT_NOT_CONNECTED"));
 		}
     }
 

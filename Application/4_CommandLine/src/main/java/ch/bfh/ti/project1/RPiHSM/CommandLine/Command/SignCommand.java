@@ -11,6 +11,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import static ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.Constants.*;
 
@@ -22,7 +24,7 @@ public class SignCommand implements CommandI {
 
 
     private SerialHelper serialHelper;
-
+    private ResourceBundle b;
     private String userPath;
 
     @Parameter(description = PARAMETERS_LIST)//JCommander requirements (all others parameters)
@@ -43,6 +45,7 @@ public class SignCommand implements CommandI {
     public SignCommand(String userPath, SerialHelper serialHelper) {
         this.userPath = userPath;
         this.serialHelper = serialHelper;
+        this.b = ResourceBundle.getBundle("language",Locale.getDefault());
     }
 
     /**
@@ -52,20 +55,26 @@ public class SignCommand implements CommandI {
      */
     @Override
     public String execute() {
+        int index = filePath.lastIndexOf('.');
+        File signatureFile = new File(filePath.substring(0, index) + "-signature.bin");
+        try {
+            FileUtils.copyFile(new File(filePath), signatureFile); //file copy
+        } catch (IOException e2) {
+            return b.getString("FILE_COPY_ERROR");
+        }
 
-
-        Sign s = new Sign(serialHelper, userPath, keySetName, filePath);
+        Sign s = new Sign(serialHelper, userPath, keySetName, signatureFile.getAbsolutePath());
 
         try {
             if (s.sign()) {
-                return SIGN_SUCCESS;
+                return b.getString("SIGN_SUCCESS");
             } else {
-                return SIGN_ERROR;
+                return b.getString("SIGN_ERROR");
             }
         } catch (OperationNotSupportedException e) {
-            return UNSUPPORTED_OPERATION;
+            return b.getString("UNSUPPORTED_OPERATION");
         } catch (FileNotFoundException e) {
-            return FILE_NOT_FOUND;
+            return b.getString("FILE_NOT_FOUND");
         }
 
     }

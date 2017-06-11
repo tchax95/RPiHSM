@@ -9,6 +9,8 @@ import com.beust.jcommander.Parameter;
 import javax.naming.OperationNotSupportedException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import static ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.Constants.*;
 
@@ -20,7 +22,7 @@ public class KeyStatusCommand implements CommandI {
 
 
     private SerialHelper serialHelper;
-
+    private ResourceBundle b;
     private String userPath;
 
     @Parameter(description = PARAMETERS_LIST)//JCommander requirements (all others parameters)
@@ -44,6 +46,7 @@ public class KeyStatusCommand implements CommandI {
     public KeyStatusCommand(String userPath, SerialHelper serialHelper) {
         this.userPath = userPath;
         this.serialHelper = serialHelper;
+        this.b = ResourceBundle.getBundle("language",Locale.getDefault());
     }
 
     /**
@@ -58,25 +61,25 @@ public class KeyStatusCommand implements CommandI {
         try {
             if (status.equals(Constants.DEMOTE)) {
                 if (ks.demote()) {
-                    return DEMOTE_SUCCESS;
+                    return b.getString("DEMOTE_SUCCESS");
                 } else {
-                    return DEMOTE_ERROR;
+                    return b.getString("DEMOTE_ERROR");
                 }
             } else if (status.equals(Constants.PROMOTE)) {
                 if (ks.promote()) {
-                    return PROMOTE_SUCCESS;
+                    return b.getString("PROMOTE_SUCCESS");
                 } else {
-                    return PROMOTE_ERROR;
+                    return b.getString("PROMOTE_ERROR");
                 }
             } else {
                 if (ks.revoke()) {
-                    return REVOKE_SUCCESS;
+                    return b.getString("REVOKE_SUCCESS");
                 } else {
-                    return REVOKE_ERROR;
+                    return b.getString("REVOKE_ERROR");
                 }
             }
         } catch (OperationNotSupportedException e) {
-            return UNSUPPORTED_OPERATION;
+            return b.getString("UNSUPPORTED_OPERATION");
         }
 
     }

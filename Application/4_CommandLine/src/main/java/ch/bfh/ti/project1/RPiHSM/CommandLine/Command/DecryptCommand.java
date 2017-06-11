@@ -9,6 +9,8 @@ import javax.naming.OperationNotSupportedException;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import static ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.Constants.*;
 
@@ -19,7 +21,7 @@ import static ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.Constants.*;
 public class DecryptCommand implements CommandI {
 
     private SerialHelper serialHelper;
-
+    private ResourceBundle b;
     private String userPath;
 
     @Parameter(description = PARAMETERS_LIST)//JCommander requirements (all others parameters)
@@ -40,6 +42,7 @@ public class DecryptCommand implements CommandI {
     public DecryptCommand(String userPath, SerialHelper serialHelper) {
         this.userPath = userPath;
         this.serialHelper = serialHelper;
+        this.b = ResourceBundle.getBundle("language",Locale.getDefault());
     }
 
     /**
@@ -52,14 +55,14 @@ public class DecryptCommand implements CommandI {
         EncryptDecrypt ed = new EncryptDecrypt(serialHelper, userPath, keySetName, filePath);
         try {
             if (ed.decrypt()) {
-                return DECRYPT_SUCCESS;
+                return b.getString("DECRYPT_SUCCESS");
             } else {
-                return DECRYPT_ERROR;
+                return b.getString("DECRYPT_ERROR");
             }
         } catch (OperationNotSupportedException e) {
-            return UNSUPPORTED_OPERATION;
+            return b.getString("UNSUPPORTED_OPERATION");
         } catch (FileNotFoundException e) {
-            return FILE_NOT_FOUND;
+            return b.getString("FILE_NOT_FOUND");
         }
     }
 

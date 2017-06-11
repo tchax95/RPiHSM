@@ -29,17 +29,17 @@ public class CreateKeySetCommandStage extends AbstractStage {
         super(serialHelper, userPath);
 
         //creates the scene objects
-        this.sceneTitle = new Label(Constants.CREATE_KEYSET_COMMAND_TITLE);
-        executeButton = new Button(Constants.BUTTON_TEXT_CREATEKEYSET);
-        purposeLabel = new Label(Constants.PURPOSE);
+        this.sceneTitle = new Label(b.getString("CREATE_KEYSET_COMMAND_TITLE"));
+        executeButton = new Button(b.getString("BUTTON_TEXT_CREATEKEYSET"));
+        purposeLabel = new Label(b.getString("PURPOSE"));
         purposeComboBox = new ComboBox<>();
-        algorithmLabel = new Label(Constants.ALGORITHM);
+        algorithmLabel = new Label(b.getString("ALGORITHM"));
         algorithmComboBox = new ComboBox<>();
-        nameLabel = new Label(Constants.NAME);
+        nameLabel = new Label(b.getString("NAME"));
         nameTextField = new TextField();
-        algorithmComboBox.getItems().addAll(Constants.AES, Constants.RSA, Constants.DSA);
+        algorithmComboBox.getItems().addAll(AES, RSA);
         algorithmComboBox.getSelectionModel().selectFirst();
-        purposeComboBox.getItems().addAll(Constants.CRYPT, Constants.SIGN);
+        purposeComboBox.getItems().addAll(CRYPT, SIGN);
         purposeComboBox.getSelectionModel().selectFirst();
 
         //disables purpose and algorithm choices, if the key set already exists
@@ -52,7 +52,7 @@ public class CreateKeySetCommandStage extends AbstractStage {
         //On mouse clicked, ties to create a key set and displays the success or error messages
         executeButton.setOnMouseClicked(e1 -> {
             String algorithm;
-            if (algorithmComboBox.getValue().equals(Constants.AES))
+            if (algorithmComboBox.getValue().equals(AES))
                 algorithm = "-"; //AES does not need to be sent (is the default symmetric algorithm)
             else algorithm = algorithmComboBox.getValue();
 
@@ -60,26 +60,26 @@ public class CreateKeySetCommandStage extends AbstractStage {
             try {
                 if (cks.create()) {
                 	clearElements();
-                    success(Constants.KEYSET_CREATION_SUCCESS);
+                    success(b.getString("KEYSET_CREATION_SUCCESS"));
                 } else {
-                    error(Constants.KEYSET_CREATION_NOT_SUCCESS);
+                    error(b.getString("KEYSET_CREATION_NOT_SUCCESS"));
                 }
             } catch (OperationNotSupportedException e) {
-                error(Constants.UNSUPPORTED_OPERATION);
+                error(b.getString("UNSUPPORTED_OPERATION"));
             }
         });
 
         //changes the values of the purpose on algorithm choices (dsa can only sign)
         algorithmComboBox.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if (newValue.toString().equals(Constants.DSA)) purposeComboBox.getItems().setAll(Constants.SIGN);
-            else purposeComboBox.getItems().setAll(Constants.CRYPT, Constants.SIGN);
+            if (newValue.toString().equals(b.getString("DSA"))) purposeComboBox.getItems().setAll(SIGN);
+            else purposeComboBox.getItems().setAll(CRYPT, SIGN);
         });
 
         //changes the values of the algorithm on purpose choices (dsa can only sign)
         purposeComboBox.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if (newValue.toString().equals(Constants.SIGN))
-                algorithmComboBox.getItems().setAll(Constants.AES, Constants.RSA, Constants.DSA);
-            else algorithmComboBox.getItems().setAll(Constants.AES, Constants.RSA);
+            if (newValue.toString().equals(b.getString("SIGN")))
+                algorithmComboBox.getItems().setAll(AES, RSA, DSA);
+            else algorithmComboBox.getItems().setAll(AES, RSA);
         });
 
 
@@ -100,7 +100,7 @@ public class CreateKeySetCommandStage extends AbstractStage {
      */
     private void clearElements() {
     	nameTextField.clear();
-    	purposeComboBox.getSelectionModel().select(Constants.CRYPT);
-    	algorithmComboBox.getSelectionModel().select(Constants.AES);
+    	purposeComboBox.getSelectionModel().select(CRYPT);
+    	algorithmComboBox.getSelectionModel().select(AES);
 	}
 }

@@ -8,6 +8,8 @@ import javax.naming.OperationNotSupportedException;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import static ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.Constants.*;
 
@@ -18,7 +20,7 @@ import static ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.Constants.*;
 public class VerifyCommand implements CommandI {
 
     private SerialHelper serialHelper;
-
+    private ResourceBundle b;
     private String userPath;
 
     @Parameter(description = PARAMETERS_LIST)//JCommander requirements (all others parameters)
@@ -42,6 +44,7 @@ public class VerifyCommand implements CommandI {
     public VerifyCommand(String userPath, SerialHelper serialHelper) {
         this.userPath = userPath;
         this.serialHelper = serialHelper;
+        this.b = ResourceBundle.getBundle("language",Locale.getDefault());
     }
 
 
@@ -56,14 +59,14 @@ public class VerifyCommand implements CommandI {
 
         try {
             if (v.verify()) {
-                return VERIFY_SUCCESS;
+                return b.getString("VERIFY_SUCCESS");
             } else {
-                return VERIFY_ERROR;
+                return b.getString("VERIFY_ERROR");
             }
         } catch (OperationNotSupportedException e) {
-            return UNSUPPORTED_OPERATION;
+            return b.getString("UNSUPPORTED_OPERATION");
         } catch (FileNotFoundException e) {
-            return FILE_NOT_FOUND;
+            return b.getString("FILE_NOT_FOUND");
         }
     }
 

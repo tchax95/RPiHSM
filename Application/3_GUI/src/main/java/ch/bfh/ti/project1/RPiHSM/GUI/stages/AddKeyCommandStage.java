@@ -32,15 +32,15 @@ public class AddKeyCommandStage extends AbstractStage {
         super(serialHelper, userPath);
 
         //creates the scene objects
-        this.sceneTitle = new Label(Constants.ADD_KEY_COMMAND_STAGE_TITLE);
-        executeButton = new Button(Constants.BUTTON_TEXT_ADDKEY);
-        keySetLabel = new Label(Constants.NAME);
-        statusLabel = new Label(Constants.STATUS);
-        sizeLabel = new Label(Constants.SIZE + "( 0 = default )");
+        this.sceneTitle = new Label(b.getString("ADD_KEY_COMMAND_STAGE_TITLE"));
+        executeButton = new Button(b.getString("BUTTON_TEXT_ADDKEY"));
+        keySetLabel = new Label(b.getString("NAME"));
+        statusLabel = new Label(b.getString("STATUS"));
+        sizeLabel = new Label(b.getString("SIZE") + "( 0 = default )");
         keySetTextField = new TextField();
         statusComboBox = new ComboBox<>();
         sizeTextField = new TextField("0");
-        statusComboBox.getItems().addAll(Constants.PRIMARY, Constants.ACTIVE, Constants.INACTIVE);
+        statusComboBox.getItems().addAll(PRIMARY, ACTIVE, INACTIVE);
         statusComboBox.getSelectionModel().selectFirst();
 
         //On mouse clicked, tries to create a key and displays the success or error messages
@@ -49,17 +49,17 @@ public class AddKeyCommandStage extends AbstractStage {
             try {
                 if (ck.create()) {
                 	clearElements();
-                    success(Constants.KEY_SUCCESS);
+                    success(b.getString("KEY_SUCCESS"));
                 } else {
-                    error(Constants.KEY_NOT_SUCCESS);
+                    error(b.getString("KEY_NOT_SUCCESS"));
                 }
             } catch (OperationNotSupportedException e) {
-                error(Constants.UNSUPPORTED_OPERATION);
+                error(b.getString("UNSUPPORTED_OPERATION"));
             }
         });
 
         //bind to size text field disable property
-        sizeTextField.disableProperty().bind(messages.textProperty().isEqualTo(Constants.KEYSET_EXISTS).not());
+        sizeTextField.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("KEYSET_EXISTS")).not());
         executeButton.disableProperty().bind(sizeTextField.disabledProperty());
         statusComboBox.disableProperty().bind(sizeTextField.disabledProperty());
 
@@ -67,7 +67,7 @@ public class AddKeyCommandStage extends AbstractStage {
         sizeTextField.textProperty().addListener((obs, oldValue, newValue) -> {
             executeButton.disableProperty().bind(Bindings
                     .when((new SimpleBooleanProperty(
-                            sizeTextField.getText().matches(Constants.KEY_SIZES_FIELD_PATTERN) && Integer.parseInt(sizeTextField.getText()) % 2 == 0))
+                            sizeTextField.getText().matches(KEY_SIZES_FIELD_PATTERN) && Integer.parseInt(sizeTextField.getText()) % 2 == 0))
                             .and(keySetTextField.textProperty().length().greaterThan(2)))
                     .then(false)
                     .otherwise(true).or(sizeTextField.disabledProperty()));
@@ -97,7 +97,7 @@ public class AddKeyCommandStage extends AbstractStage {
      */
     private void clearElements() {
     	keySetTextField.clear();
-        statusComboBox.getSelectionModel().select(Constants.PRIMARY);
+        statusComboBox.getSelectionModel().select(PRIMARY);
         sizeTextField.setText("0");
 	}
 }

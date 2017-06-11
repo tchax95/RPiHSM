@@ -12,8 +12,8 @@ import gnu.io.UnsupportedCommOperationException;
 
 import javax.naming.OperationNotSupportedException;
 import java.io.Console;
-
-import static ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.Constants.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * <h1>CommandLine</h1>
@@ -25,6 +25,7 @@ import static ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.Constants.*;
  * @since 29.03.2017
  */
 public class CommandLine {
+    
     /**
      * An instance of {@link ch.bfh.ti.project1.RPiHSM.API.SerialHelperI} is created. If errors occurs, the application is terminated.
      * The application ask for the user authentication and use the {@link Login} to authenticate the credentials.
@@ -37,14 +38,16 @@ public class CommandLine {
 
 
         SerialHelper serialHelper;
+        ResourceBundle b = ResourceBundle.getBundle("language", Locale.getDefault());
+        
         try {
             serialHelper = new SerialHelper();
 
 
             //asks user info
             Console console = System.console();
-            String userName = console.readLine(USER_NAME);
-            char password[] = console.readPassword(PASSWORD);
+            String userName = console.readLine(b.getString("USER_NAME"));
+            char password[] = console.readPassword(b.getString("PASSWORD"));
 
             Login login = new Login(serialHelper, userName, new String(password));//performs login
 
@@ -62,30 +65,32 @@ public class CommandLine {
 
 
                     System.out.println(message);//print the returned message
-
+                    
                 } catch (ParameterException e) { // if the JCommand find some syntax errors
-                    System.out.println(ILLEGAL_ARGUMENT);
+                    System.out.println(b.getString("ILLEGAL_ARGUMENT"));
                     System.out.println(cm.print());//print right syntax
                 } finally {
                     try {
                         serialHelper.closeConnection(); //The serial connection is closed
                     } catch (SerialPortException e) {
-                        System.out.println(SERIAL_PORT_ERROR);
+                        System.out.println(b.getString("SERIAL_PORT_ERROR"));
                     }
                 }
             } else {
-                System.out.println(WRONG_CREDENTIALS);
+                System.out.println(b.getString("WRONG_CREDENTIALS"));
             }
 
         } catch (PortInUseException e) {
-            System.out.println(SERIAL_PORT_IN_USE);
+            System.out.println(b.getString("SERIAL_PORT_IN_USE"));
         } catch (UnsupportedCommOperationException e) {
-            System.out.println(UNSUPPORTED_COM_OPERATION);
+            System.out.println(b.getString("UNSUPPORTED_COM_OPERATION"));
         } catch (SerialPortException e) {
-            System.out.println(SERIAL_PORT_ERROR);
+            System.out.println(b.getString("SERIAL_PORT_ERROR"));
         } catch (OperationNotSupportedException e) {
-            System.out.println(UNSUPPORTED_OPERATION);
-        } finally {
+            System.out.println(b.getString("UNSUPPORTED_OPERATION"));
+        } catch (NullPointerException e) {
+        	System.out.println(b.getString("PORT_NOT_CONNECTED"));
+		} finally {
             System.exit(0); // System exist with status 0 -> all the errors are catch and printed to the user
         }
 

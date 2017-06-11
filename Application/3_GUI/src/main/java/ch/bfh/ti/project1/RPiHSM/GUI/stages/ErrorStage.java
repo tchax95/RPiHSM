@@ -15,7 +15,7 @@ public class ErrorStage extends AbstractStage {
      */
     public ErrorStage(String message) {
         super(null, ""); //empty userPath and null serial helper
-        this.sceneTitle = new Label(Constants.PORT_ERROR);
+        this.sceneTitle = new Label(b.getString("PORT_ERROR"));
         error(message); //prints the message error
         addHeader(false);
     }

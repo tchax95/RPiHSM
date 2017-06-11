@@ -35,11 +35,11 @@ public class LoginStage extends AbstractStage {
         super(serialHelper, "");//empty userPath
 
         //creates the scene objects
-        this.sceneTitle = new Label(Constants.LOGIN_STAGE_TITLE);
-        loginButton = new Button(Constants.BUTTON_TEXT_SIGN_IN);
-        userName = new Label(Constants.USERNAME);
+        this.sceneTitle = new Label(b.getString("LOGIN_STAGE_TITLE"));
+        loginButton = new Button(b.getString("BUTTON_TEXT_SIGN_IN"));
+        userName = new Label(b.getString("USERNAME"));
         userTextField = new TextField("");
-        password = new Label(Constants.PASSWORD);
+        password = new Label(b.getString("PASSWORD"));
         passwordTextField = new PasswordField();
         messageText = new Text();
 
@@ -53,7 +53,7 @@ public class LoginStage extends AbstractStage {
                     new MainStage(serialHelper, userPath);
                 } else {
                 	clearElements();
-                    error(Constants.WRONG_AUTHENTICATION);
+                    error(b.getString("WRONG_AUTHENTICATION"));
                 }
             }
         });
@@ -69,7 +69,7 @@ public class LoginStage extends AbstractStage {
                 LoginStage.this.hide();
                 new MainStage(serialHelper, userPath);
             } else {
-                error(Constants.WRONG_AUTHENTICATION);
+                error(b.getString("WRONG_AUTHENTICATION"));
             }
         });
 

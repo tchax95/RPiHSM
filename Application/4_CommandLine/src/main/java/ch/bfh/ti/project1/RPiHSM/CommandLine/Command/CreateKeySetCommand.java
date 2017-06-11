@@ -9,6 +9,8 @@ import com.beust.jcommander.Parameter;
 import javax.naming.OperationNotSupportedException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import static ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.Constants.*;
 
@@ -19,7 +21,7 @@ import static ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.Constants.*;
 public class CreateKeySetCommand implements CommandI {
 
     private SerialHelper serialHelper;
-
+    private ResourceBundle b;
     private String userPath;
 
 
@@ -47,6 +49,7 @@ public class CreateKeySetCommand implements CommandI {
     public CreateKeySetCommand(String userPath, SerialHelper serialHelper) {
         this.userPath = userPath;
         this.serialHelper = serialHelper;
+        this.b = ResourceBundle.getBundle("language",Locale.getDefault());
     }
 
 
@@ -59,12 +62,12 @@ public class CreateKeySetCommand implements CommandI {
     public String execute() {
         //The RSA and dsa algorithm can be used together
         if (rsa && dsa) {
-            return RSA_DSA_ERROR;
+            return b.getString("RSA_DSA_ERROR");
         }
 
         //The dsa can be use only if the purpose is to sign
         if (dsa && purpose.equals(CRYPT)) {
-            return CRYPT_ERROR;
+            return b.getString("CRYPT_ERROR");
         }
 
         String algorithm;
@@ -80,12 +83,12 @@ public class CreateKeySetCommand implements CommandI {
         CreateKeySet cks = new CreateKeySet(serialHelper, userPath, purpose, keySetName, algorithm);
         try {
             if (cks.create()) {
-                return KEY_SET_SUCCESS;
+                return b.getString("KEY_SET_SUCCESS");
             } else {
-                return KEY_SET_ERROR;
+                return b.getString("KEY_SET_ERROR");
             }
         } catch (OperationNotSupportedException e) {
-            return UNSUPPORTED_OPERATION;
+            return b.getString("UNSUPPORTED_OPERATION");
         }
 
 

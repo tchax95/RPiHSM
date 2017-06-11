@@ -34,12 +34,12 @@ public class SignCommandStage extends AbstractStage {
         super(serialHelper, userPath);
 
         //creates the scene objects
-        this.sceneTitle = new Label(Constants.SIGN_COMMAND_TITLE);
-        executeButton = new Button(Constants.BUTTON_TEXT_SIGN);
-        fileChooserButton = new Button(Constants.FILE_CHOOSER_BUTTON_SIGN);
-        keySetLabel = new Label(Constants.KEY_SET);
+        this.sceneTitle = new Label(b.getString("SIGN_COMMAND_TITLE"));
+        executeButton = new Button(b.getString("BUTTON_TEXT_SIGN"));
+        fileChooserButton = new Button(b.getString("FILE_CHOOSER_BUTTON_SIGN"));
+        keySetLabel = new Label(b.getString("KEY_SET"));
         keySetTextField = new TextField();
-        fileLabel = new Label(Constants.FILE);
+        fileLabel = new Label(b.getString("FILE"));
         filechooser = new FileChooser();
         fileNameLabel = new Label();
 
@@ -51,38 +51,41 @@ public class SignCommandStage extends AbstractStage {
             try {
                 FileUtils.copyFile(originalFile, signatureFile); //file copy
             } catch (IOException e2) {
-                error(Constants.FILE_COPY_ERROR);
+                error(b.getString("FILE_COPY_ERROR"));
+                if(signatureFile.exists()) signatureFile.delete();
             }
 
             Sign s = new Sign(serialHelper, userPath, keySetTextField.getText(), signatureFile.getAbsolutePath());
             try {
                 if (s.sign()){
                 	clearElements();
-                	success(Constants.SIGN_SUCCESS); //tries to sign
-                }
-                else{
-                	error(Constants.SIGN_NOT_SUCCESS);
+                	success(b.getString("SIGN_SUCCESS")); //tries to sign
+                } else{
+                	error(b.getString("SIGN_NOT_SUCCESS"));
+                	if(signatureFile.exists()) signatureFile.delete();
                 }
             } catch (OperationNotSupportedException e1) {
-                error(Constants.UNSUPPORTED_OPERATION);
+                error(b.getString("UNSUPPORTED_OPERATION"));
+                if(signatureFile.exists()) signatureFile.delete();
             } catch (FileNotFoundException e1) {
-            	error(Constants.FILE_NOT_FOUND);
+            	error(b.getString("FILE_NOT_FOUND"));
+            	if(signatureFile.exists()) signatureFile.delete();
 			}
         });
 
         //disables the file chooser if the key set does not exist
-        fileChooserButton.disableProperty().bind(messages.textProperty().isEqualTo(Constants.KEYSET_EXISTS).not());
+        fileChooserButton.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("KEYSET_EXISTS")).not());
         //disables the execute button if no file to sign has been selected
-        executeButton.disableProperty().bind(messages.textProperty().isEqualTo(Constants.FILE_CHOOSER_FILE_CHOSEN).not());
+        executeButton.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("FILE_CHOOSER_FILE_CHOSEN")).not());
 
         //On mouse clicked, sets the file to sign as the file selected with the file chooser and displays that a file has been selected
         fileChooserButton.setOnMouseClicked(e -> {
             try {
                 originalFile = filechooser.showOpenDialog(this);
                 fileNameLabel.setText(originalFile.getAbsolutePath());
-                success(Constants.FILE_CHOOSER_FILE_CHOSEN);
+                success(b.getString("FILE_CHOOSER_FILE_CHOSEN"));
             } catch (Exception e2) {
-                fileNameLabel.setText(Constants.FILE_CHOOSER_NO_FILE_CHOSEN);
+                fileNameLabel.setText(b.getString("FILE_CHOOSER_NO_FILE_CHOSEN"));
             }
         });
 

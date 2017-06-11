@@ -29,11 +29,11 @@ public class RevokeCommandStage extends AbstractStage {
         super(serialHelper, userPath);
 
         //creates the scene objects
-        this.sceneTitle = new Label(Constants.REVOKE_COMMAND_TITLE);
-        executeButton = new Button(Constants.BUTTON_TEXT_REVOKE);
-        keySetLabel = new Label(Constants.KEY_SET);
+        this.sceneTitle = new Label(b.getString("REVOKE_COMMAND_TITLE"));
+        executeButton = new Button(b.getString("BUTTON_TEXT_REVOKE"));
+        keySetLabel = new Label(b.getString("KEY_SET"));
         keySetTextField = new TextField();
-        versionLabel = new Label(Constants.VERSION_LABEL);
+        versionLabel = new Label(b.getString("VERSION_LABEL"));
         versionTextField = new TextField();
         executeButton.setDisable(true); //disabled at begin
 
@@ -43,27 +43,27 @@ public class RevokeCommandStage extends AbstractStage {
             try {
                 if (ks.revoke()){
                 	clearElements();
-                	success(Constants.REVOKE_SUCCESS);
+                	success(b.getString("REVOKE_SUCCESS"));
                 }
                 else{
-                	error(Constants.REVOKE_NOT_SUCCESS);
+                	error(b.getString("REVOKE_NOT_SUCCESS"));
                 }
             } catch (OperationNotSupportedException e1) {
-                error(Constants.UNSUPPORTED_OPERATION);
+                error(b.getString("UNSUPPORTED_OPERATION"));
             }
         });
 
         //disables the version textfield if the key set does not exist
-        versionTextField.disableProperty().bind(messages.textProperty().isEqualTo(Constants.KEYSET_EXISTS).not());
+        versionTextField.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("KEYSET_EXISTS")).not());
 
         //disables the execute button if the key set does not exist of if the key version is not a number
         versionTextField.textProperty().addListener((obs, oldValue, newValue) -> {
             executeButton.disableProperty().bind(Bindings
                     .when((new SimpleBooleanProperty(
-                            versionTextField.getText().matches(Constants.NUMBER_FIELD_PATTERN)))
+                            versionTextField.getText().matches(NUMBER_FIELD_PATTERN)))
                             .and(keySetTextField.textProperty().length().greaterThan(2)))
                     .then(false)
-                    .otherwise(true).or(messages.textProperty().isEqualTo(Constants.KEYSET_EXISTS).not()));
+                    .otherwise(true).or(messages.textProperty().isEqualTo(b.getString("KEYSET_EXISTS")).not()));
         });
 
         //on focus out checks if the key set exists

@@ -33,48 +33,48 @@ public class EncryptDecryptCommandStage extends AbstractStage {
         super(serialHelper, userPath);
 
         //creates the scene objects
-        if (encrypt) sceneTitle = new Label(Constants.ENCRYPT_COMMAND_TITLE);
-        else sceneTitle = new Label(Constants.DECRYPT_COMMAND_TITLE);
-        keySetLabel = new Label(Constants.KEY_SET);
+        if (encrypt) sceneTitle = new Label(b.getString("ENCRYPT_COMMAND_TITLE"));
+        else sceneTitle = new Label(b.getString("DECRYPT_COMMAND_TITLE"));
+        keySetLabel = new Label(b.getString("KEY_SET"));
         keySetTextField = new TextField();
-        fileLabel = new Label(Constants.FILE);
+        fileLabel = new Label(b.getString("FILE"));
         filechooser = new FileChooser();
         fileNameLabel = new Label();
-        executeButton = new Button(sceneTitle.getText().contains(Constants.ENCRYPT_COMMAND_TITLE) ? Constants.BUTTON_TEXT_ENCRYPT : Constants.BUTTON_TEXT_DECRYPT); //Choices text for the execute button
-        fileChooserButton = new Button(sceneTitle.getText().contains(Constants.ENCRYPT_COMMAND_TITLE) ? Constants.FILE_CHOOSER_BUTTON_ENCRYPT : Constants.FILE_CHOOSER_BUTTON_DECRYPT); //Choices text for the filechooser button
+        executeButton = new Button(sceneTitle.getText().contains(b.getString("ENCRYPT_COMMAND_TITLE")) ? b.getString("BUTTON_TEXT_ENCRYPT") : b.getString("BUTTON_TEXT_DECRYPT")); //Choices text for the execute button
+        fileChooserButton = new Button(sceneTitle.getText().contains(b.getString("ENCRYPT_COMMAND_TITLE")) ? b.getString("FILE_CHOOSER_BUTTON_ENCRYPT") : b.getString("FILE_CHOOSER_BUTTON_DECRYPT")); //Choices text for the filechooser button
 
         //On mouse clicked checks, using the stage title,if the file needs to be encrypted or decrypted, then tries to perform the action and displays the success or error messages
         executeButton.setOnMouseClicked(e1 -> {
             if (file == null) { //checks if a file has been selected
-                error(Constants.FILE_CHOOSER_NO_FILE_CHOSEN);
+                error(b.getString("FILE_CHOOSER_NO_FILE_CHOSEN"));
             } else {
                 EncryptDecrypt ed = new EncryptDecrypt(serialHelper, userPath, keySetTextField.getText(), file.getAbsolutePath());
 
-                if (sceneTitle.getText().equals(Constants.ENCRYPT_COMMAND_TITLE)) {
+                if (sceneTitle.getText().equals(b.getString("ENCRYPT_COMMAND_TITLE"))) {
                     try { //begin encrypt
                         if (ed.encrypt()) {
                             clearElements();
-                            success(Constants.ENCRYPT_SUCCESS);
+                            success(b.getString("ENCRYPT_SUCCESS"));
                         } else {
-                            error(Constants.ENCRYPT_NOT_SUCCESS);
+                            error(b.getString("ENCRYPT_NOT_SUCCESS"));
                         }
                     } catch (OperationNotSupportedException e) {
-                        error(Constants.UNSUPPORTED_OPERATION);
+                        error(b.getString("UNSUPPORTED_OPERATION"));
                     } catch (FileNotFoundException e) {
-                        error(Constants.FILE_NOT_FOUND);
+                        error(b.getString("FILE_NOT_FOUND"));
                     }
                 } else { //begin decrypt
                     try {
                         if (ed.decrypt()) {
                         	clearElements();
-                            success(Constants.DECRYPT_SUCCESS);
+                            success(b.getString("DECRYPT_SUCCESS"));
                         } else {
-                            error(Constants.DECRYPT_NOT_SUCCESS);
+                            error(b.getString("DECRYPT_NOT_SUCCESS"));
                         }
                     } catch (OperationNotSupportedException e) {
-                        error(Constants.UNSUPPORTED_OPERATION);
+                        error(b.getString("UNSUPPORTED_OPERATION"));
                     } catch (FileNotFoundException e) {
-                        error(Constants.FILE_NOT_FOUND);
+                        error(b.getString("FILE_NOT_FOUND"));
                     }
                 }
             }
@@ -85,16 +85,16 @@ public class EncryptDecryptCommandStage extends AbstractStage {
             try {
                 file = filechooser.showOpenDialog(this);
                 fileNameLabel.setText(file.getAbsolutePath());
-                success(Constants.FILE_CHOOSER_FILE_CHOSEN);
+                success(b.getString("FILE_CHOOSER_FILE_CHOSEN"));
             } catch (Exception e2) {
-                fileNameLabel.setText(Constants.FILE_CHOOSER_NO_FILE_CHOSEN);
+                fileNameLabel.setText(b.getString("FILE_CHOOSER_NO_FILE_CHOSEN"));
             }
         });
 
         //disables the file chooser if the key set does not exist
-        fileChooserButton.disableProperty().bind(messages.textProperty().isEqualTo(Constants.KEYSET_EXISTS).not());
+        fileChooserButton.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("KEYSET_EXISTS")).not());
         //disables the execute button if no file has been selected using the file chooser
-        executeButton.disableProperty().bind(messages.textProperty().isEqualTo(Constants.FILE_CHOOSER_FILE_CHOSEN).not());
+        executeButton.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("FILE_CHOOSER_FILE_CHOSEN")).not());
 
         //on focus out checks if the key set exists
         keySetTextField.focusedProperty().addListener((obs, oldVal, newVal) -> {

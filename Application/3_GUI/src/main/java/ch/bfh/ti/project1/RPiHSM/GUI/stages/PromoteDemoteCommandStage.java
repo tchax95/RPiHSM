@@ -31,45 +31,45 @@ public class PromoteDemoteCommandStage extends AbstractStage {
         super(serialHelper, userPath);
 
         //creates the scene objects
-        this.sceneTitle = new Label(Constants.PROMOTE_DEMOTE_COMMAND_TITLE);
-        executeButton = new Button(Constants.PROMOTE);
-        keySetLabel = new Label(Constants.KEY_SET);
+        this.sceneTitle = new Label(b.getString("PROMOTE_DEMOTE_COMMAND_TITLE"));
+        executeButton = new Button(PROMOTE);
+        keySetLabel = new Label(b.getString("KEY_SET"));
         keySetTextField = new TextField();
-        versionLabel = new Label(Constants.VERSION_LABEL);
+        versionLabel = new Label(b.getString("VERSION_LABEL"));
         versionTextField = new TextField();
         actionComboBox = new ComboBox<>();
-        actionLabel = new Label(Constants.ACTION_LABEL);
+        actionLabel = new Label(b.getString("ACTION_LABEL"));
 
-        actionComboBox.getItems().addAll(Constants.PROMOTE, Constants.DEMOTE);
+        actionComboBox.getItems().addAll(PROMOTE, DEMOTE);
         actionComboBox.getSelectionModel().selectFirst();
 
         executeButton.setDisable(true); //disabled at the beginning
         //On mouse clicked checks if the action to perform is promote or demote, then tries to perform the action and displays the success or error messages
         executeButton.setOnMouseClicked(e -> {
             KeyStatus ks = new KeyStatus(serialHelper, userPath, keySetTextField.getText(), Integer.parseInt(versionTextField.getText()));
-            if (actionComboBox.getValue().equals(Constants.PROMOTE)) { //Action: promote
+            if (actionComboBox.getValue().equals(PROMOTE)) { //Action: promote
                 try {
                     if (ks.promote()){
                     	clearElements();
-                    	success(Constants.PROMOTE_SUCCESS);
+                    	success(b.getString("PROMOTE_SUCCESS"));
                     }
                     else{
-                    	error(Constants.PROMOTE_NOT_SUCCESS);
+                    	error(b.getString("PROMOTE_NOT_SUCCESS"));
                     }
                 } catch (OperationNotSupportedException e1) {
-                    error(Constants.UNSUPPORTED_OPERATION);
+                    error(b.getString("UNSUPPORTED_OPERATION"));
                 }
             } else { //Action: demote
                 try {
                     if (ks.demote()){
                     	clearElements();
-                    	success(Constants.DEMOTE_SUCCESS);
+                    	success(b.getString("DEMOTE_SUCCESS"));
                     }
                     else{
-                    	error(Constants.DEMOTE_NOT_SUCCESS);
+                    	error(b.getString("DEMOTE_NOT_SUCCESS"));
                     }
                 } catch (OperationNotSupportedException e1) {
-                    error(Constants.UNSUPPORTED_OPERATION);
+                    error(b.getString("UNSUPPORTED_OPERATION"));
                 }
             }
         });
@@ -78,18 +78,18 @@ public class PromoteDemoteCommandStage extends AbstractStage {
         versionTextField.textProperty().addListener((obs, oldValue, newValue) -> {
             executeButton.disableProperty().bind(Bindings
                     .when((new SimpleBooleanProperty(
-                            versionTextField.getText().matches(Constants.NUMBER_FIELD_PATTERN)))
+                            versionTextField.getText().matches(NUMBER_FIELD_PATTERN)))
                             .and(keySetTextField.textProperty().length().greaterThan(2)))
                     .then(false)
-                    .otherwise(true).or(messages.textProperty().isEqualTo(Constants.KEYSET_EXISTS).not()));
+                    .otherwise(true).or(messages.textProperty().isEqualTo(b.getString("KEYSET_EXISTS")).not()));
         });
 
         //on value changed, changes the text of execute button (promote or demote key)
         actionComboBox.setOnAction(e -> executeButton.setText(actionComboBox.getSelectionModel().getSelectedItem() + " key"));
 
         //disables version textfield and action combo box if the key set does not exist
-        versionTextField.disableProperty().bind(messages.textProperty().isEqualTo(Constants.KEYSET_EXISTS).not());
-        actionComboBox.disableProperty().bind(messages.textProperty().isEqualTo(Constants.KEYSET_EXISTS).not());
+        versionTextField.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("KEYSET_EXISTS")).not());
+        actionComboBox.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("KEYSET_EXISTS")).not());
 
         //on focus out checks if the key set exists
         keySetTextField.focusedProperty().addListener((obs, oldVal, newVal) -> {
@@ -101,12 +101,12 @@ public class PromoteDemoteCommandStage extends AbstractStage {
         //places the objects in the Grid
         addHeader(true);
         grid.setGridLinesVisible(false);
-        grid.add(actionLabel, 0, 0);
-        grid.add(actionComboBox, 1, 0);
-        grid.add(keySetLabel, 0, 1);
-        grid.add(keySetTextField, 1, 1);
-        grid.add(versionLabel, 0, 2);
-        grid.add(versionTextField, 1, 2);
+        grid.add(keySetLabel, 0, 0);
+        grid.add(keySetTextField, 1, 0);
+        grid.add(versionLabel, 0, 1);
+        grid.add(versionTextField, 1, 1);
+		grid.add(actionLabel, 0, 2);
+        grid.add(actionComboBox, 1, 2);
         grid.add(executeButton, 1, 4);
     }
     
@@ -116,7 +116,7 @@ public class PromoteDemoteCommandStage extends AbstractStage {
     private void clearElements() {
         keySetTextField.clear();
         versionTextField.clear();
-        actionComboBox.getSelectionModel().select(Constants.PROMOTE);
-        executeButton.setText(Constants.PROMOTE + " key");
+        actionComboBox.getSelectionModel().select(PROMOTE);
+        executeButton.setText(PROMOTE + " key");
     }
 }

@@ -1,8 +1,7 @@
 package ch.bfh.ti.project1.RPiHSM.CommandLine.Command;
 
-
-import ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.Constants;
 import ch.bfh.ti.project1.RPiHSM.API.SerialHelper;
+import ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.Constants;
 
 /**
  * <h1>CommandFactory</h1>

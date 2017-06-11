@@ -1,5 +1,8 @@
 package ch.bfh.ti.project1.RPiHSM.CommandLine.Utils;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import com.beust.jcommander.IParameterValidator;
 import com.beust.jcommander.ParameterException;
 
@@ -20,8 +23,9 @@ public final class StatusValidator implements IParameterValidator {
      */
     @Override
     public void validate(String name, String value) throws ParameterException {
+    	ResourceBundle b = ResourceBundle.getBundle("language",Locale.getDefault());
         if (!value.equals(Constants.PRIMARY) && !value.equals(Constants.ACTIVE) && !value.equals(Constants.INACTIVE))
-            throw new ParameterException(Constants.ILLEGAL_ARGUMENT);
+            throw new ParameterException(b.getString("ILLEGAL_ARGUMENT"));
     }
 
 }
