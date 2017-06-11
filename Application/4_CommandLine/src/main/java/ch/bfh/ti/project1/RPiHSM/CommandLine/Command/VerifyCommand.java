@@ -44,7 +44,7 @@ public class VerifyCommand implements CommandI {
     public VerifyCommand(String userPath, SerialHelper serialHelper) {
         this.userPath = userPath;
         this.serialHelper = serialHelper;
-        this.b = ResourceBundle.getBundle("language",Locale.getDefault());
+        this.b = ResourceBundle.getBundle("language", Locale.getDefault());
     }
 
 

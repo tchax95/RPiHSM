@@ -1,9 +1,9 @@
 package ch.bfh.ti.project1.RPiHSM.CommandLine.Command;
 
 
-import ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.PurposeValidator;
 import ch.bfh.ti.project1.RPiHSM.API.CreateKeySet;
 import ch.bfh.ti.project1.RPiHSM.API.SerialHelper;
+import ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.PurposeValidator;
 import com.beust.jcommander.Parameter;
 
 import javax.naming.OperationNotSupportedException;
@@ -49,7 +49,7 @@ public class CreateKeySetCommand implements CommandI {
     public CreateKeySetCommand(String userPath, SerialHelper serialHelper) {
         this.userPath = userPath;
         this.serialHelper = serialHelper;
-        this.b = ResourceBundle.getBundle("language",Locale.getDefault());
+        this.b = ResourceBundle.getBundle("language", Locale.getDefault());
     }
 
 

@@ -1,10 +1,10 @@
 package ch.bfh.ti.project1.RPiHSM.CommandLine;
 
-import ch.bfh.ti.project1.RPiHSM.CommandLine.Command.CommandFactory;
-import ch.bfh.ti.project1.RPiHSM.CommandLine.Command.CommandI;
 import ch.bfh.ti.project1.RPiHSM.API.Exception.SerialPortException;
 import ch.bfh.ti.project1.RPiHSM.API.Login;
 import ch.bfh.ti.project1.RPiHSM.API.SerialHelper;
+import ch.bfh.ti.project1.RPiHSM.CommandLine.Command.CommandFactory;
+import ch.bfh.ti.project1.RPiHSM.CommandLine.Command.CommandI;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
 import gnu.io.PortInUseException;
@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
  * @since 29.03.2017
  */
 public class CommandLine {
-    
+
     /**
      * An instance of {@link ch.bfh.ti.project1.RPiHSM.API.SerialHelperI} is created. If errors occurs, the application is terminated.
      * The application ask for the user authentication and use the {@link Login} to authenticate the credentials.
@@ -39,7 +39,7 @@ public class CommandLine {
 
         SerialHelper serialHelper;
         ResourceBundle b = ResourceBundle.getBundle("language", Locale.getDefault());
-        
+
         try {
             serialHelper = new SerialHelper();
 
@@ -65,7 +65,7 @@ public class CommandLine {
 
 
                     System.out.println(message);//print the returned message
-                    
+
                 } catch (ParameterException e) { // if the JCommand find some syntax errors
                     System.out.println(b.getString("ILLEGAL_ARGUMENT"));
                     System.out.println(cm.print());//print right syntax
@@ -89,8 +89,8 @@ public class CommandLine {
         } catch (OperationNotSupportedException e) {
             System.out.println(b.getString("UNSUPPORTED_OPERATION"));
         } catch (NullPointerException e) {
-        	System.out.println(b.getString("PORT_NOT_CONNECTED"));
-		} finally {
+            System.out.println(b.getString("PORT_NOT_CONNECTED"));
+        } finally {
             System.exit(0); // System exist with status 0 -> all the errors are catch and printed to the user
         }
 

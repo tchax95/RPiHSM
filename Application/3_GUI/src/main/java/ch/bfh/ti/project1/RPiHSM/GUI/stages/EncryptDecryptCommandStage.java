@@ -66,7 +66,7 @@ public class EncryptDecryptCommandStage extends AbstractStage {
                 } else { //begin decrypt
                     try {
                         if (ed.decrypt()) {
-                        	clearElements();
+                            clearElements();
                             success(b.getString("DECRYPT_SUCCESS"));
                         } else {
                             error(b.getString("DECRYPT_NOT_SUCCESS"));
@@ -113,7 +113,7 @@ public class EncryptDecryptCommandStage extends AbstractStage {
         grid.add(fileNameLabel, 1, 3);
         grid.add(executeButton, 1, 4);
     }
-    
+
     /**
      * Resets the elements to their default values
      */

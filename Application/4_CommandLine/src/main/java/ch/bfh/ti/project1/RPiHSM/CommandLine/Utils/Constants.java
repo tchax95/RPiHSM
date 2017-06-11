@@ -5,7 +5,7 @@ package ch.bfh.ti.project1.RPiHSM.CommandLine.Utils;
  * Constants for the command line application.
  */
 public final class Constants {
-	public static final String NAME_COMPLETE_VALUE = "-name";
+    public static final String NAME_COMPLETE_VALUE = "-name";
     public static final String PURPOSE_COMPLETE_VALUE = "-purpose";
     public static final String STATUS_COMPLETE_VALUE = "-status";
     public static final String STATUS_DEFAULT_VALUE = "primary";

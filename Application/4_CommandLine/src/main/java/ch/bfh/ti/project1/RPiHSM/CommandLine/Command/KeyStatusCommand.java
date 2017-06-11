@@ -1,9 +1,9 @@
 package ch.bfh.ti.project1.RPiHSM.CommandLine.Command;
 
-import ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.Constants;
-import ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.StatusCommandValidator;
 import ch.bfh.ti.project1.RPiHSM.API.KeyStatus;
 import ch.bfh.ti.project1.RPiHSM.API.SerialHelper;
+import ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.Constants;
+import ch.bfh.ti.project1.RPiHSM.CommandLine.Utils.StatusCommandValidator;
 import com.beust.jcommander.Parameter;
 
 import javax.naming.OperationNotSupportedException;
@@ -46,7 +46,7 @@ public class KeyStatusCommand implements CommandI {
     public KeyStatusCommand(String userPath, SerialHelper serialHelper) {
         this.userPath = userPath;
         this.serialHelper = serialHelper;
-        this.b = ResourceBundle.getBundle("language",Locale.getDefault());
+        this.b = ResourceBundle.getBundle("language", Locale.getDefault());
     }
 
     /**

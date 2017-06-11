@@ -2,7 +2,6 @@ package ch.bfh.ti.project1.RPiHSM.CommandLine.Command;
 
 import ch.bfh.ti.project1.RPiHSM.API.EncryptDecrypt;
 import ch.bfh.ti.project1.RPiHSM.API.SerialHelper;
-
 import com.beust.jcommander.Parameter;
 
 import javax.naming.OperationNotSupportedException;
@@ -43,7 +42,7 @@ public class EncryptCommand implements CommandI {
     public EncryptCommand(String userPath, SerialHelper serialHelper) {
         this.userPath = userPath;
         this.serialHelper = serialHelper;
-        this.b = ResourceBundle.getBundle("language",Locale.getDefault());
+        this.b = ResourceBundle.getBundle("language", Locale.getDefault());
     }
 
     /**

@@ -46,7 +46,7 @@ public class PublicKeyCommand implements CommandI {
     public PublicKeyCommand(String userPath, SerialHelper serialHelper) {
         this.userPath = userPath;
         this.serialHelper = serialHelper;
-        this.b = ResourceBundle.getBundle("language",Locale.getDefault());
+        this.b = ResourceBundle.getBundle("language", Locale.getDefault());
     }
 
     /**

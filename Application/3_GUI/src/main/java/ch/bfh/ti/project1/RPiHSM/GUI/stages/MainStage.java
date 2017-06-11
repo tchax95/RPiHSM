@@ -36,59 +36,59 @@ public class MainStage extends AbstractStage {
         revokeButton = new Button(b.getString("MAIN_STAGE_BUTTON_REVOKE"));
         signButton = new Button(b.getString("MAIN_STAGE_BUTTON_SIGN"));
         verifyButton = new Button(b.getString("MAIN_STAGE_BUTTON_VERIFY"));
-        
+
         //creates container titles
         Label titleContainer1 = new Label(b.getString("MAIN_STAGE_CONTAINER1_TITLE"));
         Label titleContainer2 = new Label(b.getString("MAIN_STAGE_CONTAINER2_TITLE"));
         Label titleContainer3 = new Label(b.getString("MAIN_STAGE_CONTAINER3_TITLE"));
         Label titleContainer4 = new Label(b.getString("MAIN_STAGE_CONTAINER4_TITLE"));
-        
+
         titleContainer1.setStyle(SECTIONS_TITLES_STYLE);
         titleContainer2.setStyle(SECTIONS_TITLES_STYLE);
         titleContainer3.setStyle(SECTIONS_TITLES_STYLE);
         titleContainer4.setStyle(SECTIONS_TITLES_STYLE);
-        
+
         //creates subcontainers
         HBox subContainer1 = new HBox();
         HBox subContainer2 = new HBox();
         HBox subContainer3 = new HBox();
         HBox subContainer4 = new HBox();
-        
+
         //Places the buttons in the right sub container
-        subContainer1.getChildren().addAll(createKeySetButton,deleteKeySetButton,pubKeyButton);
+        subContainer1.getChildren().addAll(createKeySetButton, deleteKeySetButton, pubKeyButton);
         subContainer2.getChildren().addAll(addKeyButton, promoteDemoteButton, revokeButton);
         subContainer3.getChildren().addAll(encryptButton, decryptButton);
         subContainer4.getChildren().addAll(signButton, verifyButton);
-        
+
         //creates the 4 sections
-        VBox container1 = new VBox(titleContainer1,subContainer1);
-        VBox container2 = new VBox(titleContainer2,subContainer2);
-        VBox container3 = new VBox(titleContainer3,subContainer3);
-        VBox container4 = new VBox(titleContainer4,subContainer4);
-        
+        VBox container1 = new VBox(titleContainer1, subContainer1);
+        VBox container2 = new VBox(titleContainer2, subContainer2);
+        VBox container3 = new VBox(titleContainer3, subContainer3);
+        VBox container4 = new VBox(titleContainer4, subContainer4);
+
         //Creates the main container
-        VBox masterContainer = new VBox(container1,container2,container3,container4);
-        
+        VBox masterContainer = new VBox(container1, container2, container3, container4);
+
         //Sets the paddings
         masterContainer.setPadding(new Insets(PADDING_SMALL));
         container1.setPadding(new Insets(PADDING_SMALL));
         container2.setPadding(new Insets(PADDING_SMALL));
         container3.setPadding(new Insets(PADDING_SMALL));
         container4.setPadding(new Insets(PADDING_SMALL));
-        
+
         //Sets the vertical spacing
         masterContainer.setSpacing(PADDING_SMALL);
         container1.setSpacing(10);
         container2.setSpacing(10);
         container3.setSpacing(10);
         container4.setSpacing(10);
-        
+
         //sets the horizontal spacing
         subContainer1.setSpacing(PADDING_SMALL);
         subContainer2.setSpacing(PADDING_SMALL);
         subContainer3.setSpacing(PADDING_SMALL);
         subContainer4.setSpacing(PADDING_SMALL);
-        
+
         //Sets the buttons size
         addKeyButton.setMinWidth(MAIN_MENU_BUTTON_SIZE);
         createKeySetButton.setMinWidth(MAIN_MENU_BUTTON_SIZE);
@@ -100,7 +100,7 @@ public class MainStage extends AbstractStage {
         revokeButton.setMinWidth(MAIN_MENU_BUTTON_SIZE);
         signButton.setMinWidth(MAIN_MENU_BUTTON_SIZE);
         verifyButton.setMinWidth(MAIN_MENU_BUTTON_SIZE);
-        
+
         //Sets the buttons style
         addKeyButton.setStyle(BUTTONS_STYLE);
         createKeySetButton.setStyle(BUTTONS_STYLE);
@@ -112,7 +112,7 @@ public class MainStage extends AbstractStage {
         revokeButton.setStyle(BUTTONS_STYLE);
         signButton.setStyle(BUTTONS_STYLE);
         verifyButton.setStyle(BUTTONS_STYLE);
-        
+
         //Sets the containers style
         container1.setStyle(CONTAINERS_STYLE);
         container2.setStyle(CONTAINERS_STYLE);
@@ -161,7 +161,7 @@ public class MainStage extends AbstractStage {
             this.hide();
             new VerifyCommandStage(serialHelper, userPath);
         });
-        
+
         //creates the header and adds the master container to the stage grid
         addHeader(false);
         grid.add(masterContainer, 0, 0);

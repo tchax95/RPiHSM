@@ -52,25 +52,25 @@ public class SignCommandStage extends AbstractStage {
                 FileUtils.copyFile(originalFile, signatureFile); //file copy
             } catch (IOException e2) {
                 error(b.getString("FILE_COPY_ERROR"));
-                if(signatureFile.exists()) signatureFile.delete();
+                if (signatureFile.exists()) signatureFile.delete();
             }
 
             Sign s = new Sign(serialHelper, userPath, keySetTextField.getText(), signatureFile.getAbsolutePath());
             try {
-                if (s.sign()){
-                	clearElements();
-                	success(b.getString("SIGN_SUCCESS")); //tries to sign
-                } else{
-                	error(b.getString("SIGN_NOT_SUCCESS"));
-                	if(signatureFile.exists()) signatureFile.delete();
+                if (s.sign()) {
+                    clearElements();
+                    success(b.getString("SIGN_SUCCESS")); //tries to sign
+                } else {
+                    error(b.getString("SIGN_NOT_SUCCESS"));
+                    if (signatureFile.exists()) signatureFile.delete();
                 }
             } catch (OperationNotSupportedException e1) {
                 error(b.getString("UNSUPPORTED_OPERATION"));
-                if(signatureFile.exists()) signatureFile.delete();
+                if (signatureFile.exists()) signatureFile.delete();
             } catch (FileNotFoundException e1) {
-            	error(b.getString("FILE_NOT_FOUND"));
-            	if(signatureFile.exists()) signatureFile.delete();
-			}
+                error(b.getString("FILE_NOT_FOUND"));
+                if (signatureFile.exists()) signatureFile.delete();
+            }
         });
 
         //disables the file chooser if the key set does not exist
@@ -106,7 +106,7 @@ public class SignCommandStage extends AbstractStage {
         grid.add(fileNameLabel, 1, 3);
         grid.add(executeButton, 1, 4);
     }
-    
+
     /**
      * Resets the elements to their default values
      */

@@ -82,18 +82,17 @@ public class VerifyCommandStage extends AbstractStage {
         executeButton.setOnMouseClicked(e -> {
             Verify v = new Verify(serialHelper, userPath, keySetTextField.getText(), verifyFile.getAbsolutePath(), signFile.getAbsolutePath());
             try {
-                if (v.verify()){
-                	clearElements();
-                	success(b.getString("VERIFY_SUCCESS"));
-                }
-                else{
-                	error(b.getString("VERIFY_NOT_SUCCESS"));
+                if (v.verify()) {
+                    clearElements();
+                    success(b.getString("VERIFY_SUCCESS"));
+                } else {
+                    error(b.getString("VERIFY_NOT_SUCCESS"));
                 }
             } catch (OperationNotSupportedException e1) {
                 error(b.getString("UNSUPPORTED_OPERATION"));
             } catch (FileNotFoundException e1) {
-            	error(b.getString("FILE_NOT_FOUND"));
-			}
+                error(b.getString("FILE_NOT_FOUND"));
+            }
         });
 
         //on focus out checks if the key set exists
@@ -116,7 +115,7 @@ public class VerifyCommandStage extends AbstractStage {
         grid.add(verifyFilePathLabel, 1, 5);
         grid.add(executeButton, 1, 6);
     }
-    
+
     /**
      * Resets the elements to their default values
      */

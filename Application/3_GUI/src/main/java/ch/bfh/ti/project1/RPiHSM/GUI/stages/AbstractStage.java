@@ -1,9 +1,9 @@
 package ch.bfh.ti.project1.RPiHSM.GUI.stages;
 
 import ch.bfh.ti.project1.RPiHSM.API.Exception.SerialPortException;
-import ch.bfh.ti.project1.RPiHSM.GUI.UTF8Control;
 import ch.bfh.ti.project1.RPiHSM.API.KeyExistence;
 import ch.bfh.ti.project1.RPiHSM.API.SerialHelperI;
+import ch.bfh.ti.project1.RPiHSM.GUI.UTF8Control;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -22,37 +22,36 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
+import javax.naming.OperationNotSupportedException;
 import java.util.Locale;
 import java.util.ResourceBundle;
-
-import javax.naming.OperationNotSupportedException;
 
 /**
  * <h1>AbstractStage</h1>
  * The base stage of the application that have all the common elements.
  */
 public abstract class AbstractStage extends Stage {
-	
-	protected static final double WIDTH = 1280;
-	protected static final double HEIGHT = 720;
-	protected static final int MAIN_MENU_BUTTON_SIZE = 300;
-	protected static final int PADDING_SMALL = 10;
-	protected static final int PADDING_MEDIUM = 25;
-	protected static final int HEADER_HEIGHT = 100;
-	protected static final int TITLE_FONT_SIZE = 20;
-	protected static final double BACK_BUTTON_HEIGHT = 30;
-	protected static final double BACK_BUTTON_WIDTH = 200;
-    
-	protected static final String TITLE = "RPiHSM GUI";
-	protected static final String FONT = "Tahoma";
-	protected static final String PANE_BACKGROUND = "-fx-background-color: #FFFFFF;";
-	protected static final String HEADER_TITLE_COLOR = "#697D91";
-	protected static final String HEADER_BACKGROUND = "-fx-background-color: #FAC300;";
-	protected static final String SECTIONS_TITLES_STYLE = "-fx-font: 15 arial; -fx-text-fill: #697D91; -fx-font-weight: bold;";
-	protected static final String BUTTONS_STYLE = "-fx-font: 15 arial; -fx-base: #697D91; -fx-pref-height: 40px; -fx-focus-color: transparent; -fx-text-fill: #FFFFFF; -fx-font-weight: bold;";
-	protected static final String CONTAINERS_STYLE = "-fx-border-color: black; -fx-border-width: 1; -fx-border-style: solid;";
-	protected static final String HEADER_IMAGE_PATH = "/images/bfh_logo.png";
-	protected static final String NUMBER_FIELD_PATTERN = "^([1-9]|[1-9][0-9])$";
+
+    protected static final double WIDTH = 1280;
+    protected static final double HEIGHT = 720;
+    protected static final int MAIN_MENU_BUTTON_SIZE = 300;
+    protected static final int PADDING_SMALL = 10;
+    protected static final int PADDING_MEDIUM = 25;
+    protected static final int HEADER_HEIGHT = 100;
+    protected static final int TITLE_FONT_SIZE = 20;
+    protected static final double BACK_BUTTON_HEIGHT = 30;
+    protected static final double BACK_BUTTON_WIDTH = 200;
+
+    protected static final String TITLE = "RPiHSM GUI";
+    protected static final String FONT = "Tahoma";
+    protected static final String PANE_BACKGROUND = "-fx-background-color: #FFFFFF;";
+    protected static final String HEADER_TITLE_COLOR = "#697D91";
+    protected static final String HEADER_BACKGROUND = "-fx-background-color: #FAC300;";
+    protected static final String SECTIONS_TITLES_STYLE = "-fx-font: 15 arial; -fx-text-fill: #697D91; -fx-font-weight: bold;";
+    protected static final String BUTTONS_STYLE = "-fx-font: 15 arial; -fx-base: #697D91; -fx-pref-height: 40px; -fx-focus-color: transparent; -fx-text-fill: #FFFFFF; -fx-font-weight: bold;";
+    protected static final String CONTAINERS_STYLE = "-fx-border-color: black; -fx-border-width: 1; -fx-border-style: solid;";
+    protected static final String HEADER_IMAGE_PATH = "/images/bfh_logo.png";
+    protected static final String NUMBER_FIELD_PATTERN = "^([1-9]|[1-9][0-9])$";
     protected static final String KEY_SIZES_FIELD_PATTERN = "^[0-9]{1,4}$";
 
     protected static final String ACTIVE = "active";
@@ -65,7 +64,7 @@ public abstract class AbstractStage extends Stage {
     protected static final String AES = "aes";
     protected static final String SIGN = "sign";
     protected static final String CRYPT = "crypt";
-	
+
     private VBox pane;
 
     protected Label messages;
@@ -86,7 +85,7 @@ public abstract class AbstractStage extends Stage {
 
         this.userPath = userPath;
         this.serialHelper = serialHelper;
-		this.b = ResourceBundle.getBundle("language", Locale.getDefault(), new UTF8Control());
+        this.b = ResourceBundle.getBundle("language", Locale.getDefault(), new UTF8Control());
         this.setTitle(TITLE); //Application title
 
         //Creates the Label for error and success messages
@@ -101,7 +100,7 @@ public abstract class AbstractStage extends Stage {
         grid.setHgap(PADDING_SMALL);
         grid.setVgap(PADDING_SMALL);
         grid.setPadding(new Insets(PADDING_MEDIUM));
-        
+
 
         //Creates the VBox
         pane = new VBox();
@@ -155,28 +154,26 @@ public abstract class AbstractStage extends Stage {
 
         GridPane.setHalignment(logo, HPos.LEFT);
         GridPane.setHalignment(sceneTitle, HPos.CENTER);
-        
+
         ComboBox<String> languageComboBox = new ComboBox<>();
         languageComboBox.getItems().addAll("it", "en");
         languageComboBox.getSelectionModel().select(Locale.getDefault().getLanguage());
-        
+
         languageComboBox.setStyle(BUTTONS_STYLE);
         languageComboBox.setPrefSize(BACK_BUTTON_WIDTH, BACK_BUTTON_HEIGHT);
-        
+
         languageComboBox.valueProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue.toString().equals("it")) {
-            	System.setProperty("user.language", "it");
-            	Locale.setDefault(Locale.ITALIAN);
-            }
-            else if(newValue.toString().equals("en")) {
-            	System.setProperty("user.language", "en");
-            	Locale.setDefault(Locale.ENGLISH);
-
+                System.setProperty("user.language", "it");
+                Locale.setDefault(Locale.ITALIAN);
+            } else if (newValue.toString().equals("en")) {
+                System.setProperty("user.language", "en");
+                Locale.setDefault(Locale.ENGLISH);
             }
         });
-        
+
         //header.add(languageComboBox, 2, 0);
-        
+
         if (backToMenu) { //Creates the backToMenu button if needed
             Button menuButton = new Button(b.getString("BACK_BUTTON_TEXT"));
             menuButton.setPrefSize(BACK_BUTTON_WIDTH, BACK_BUTTON_HEIGHT);
@@ -185,7 +182,7 @@ public abstract class AbstractStage extends Stage {
                 new MainStage(serialHelper, userPath);
             });
             menuButton.setStyle(BUTTONS_STYLE);
-            header.add(new VBox(menuButton,languageComboBox), 2, 0);
+            header.add(new VBox(menuButton, languageComboBox), 2, 0);
             GridPane.setHalignment(menuButton, HPos.RIGHT);
         } else {
             header.add(languageComboBox, 2, 0);

@@ -10,7 +10,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 
 import javax.naming.OperationNotSupportedException;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -61,7 +60,7 @@ public class PublicKeyCommandStage extends AbstractStage {
 
             try {
                 if (pk.generate()) {
-                	clearElements();
+                    clearElements();
                     success(b.getString("PUBLIC_KEY_SUCCESS"));
                 } else {
                     error(b.getString("PUBLIC_KEY_NOT_SUCCESS"));
@@ -69,11 +68,11 @@ public class PublicKeyCommandStage extends AbstractStage {
             } catch (OperationNotSupportedException e1) {
                 error(b.getString("UNSUPPORTED_OPERATION"));
             } catch (KeySetIsEmptyException keySetIsEmpty) {
-            	error(b.getString("KEY_SET_IS_EMPTY"));
+                error(b.getString("KEY_SET_IS_EMPTY"));
             } catch (FileNotFoundException e1) {
-            	error(b.getString("FILE_NOT_FOUND"));
+                error(b.getString("FILE_NOT_FOUND"));
             } catch (KeySetNotAsymmetricException e1) {
-            	error(b.getString("KEY_SET_NOT_ASYMMETRIC"));
+                error(b.getString("KEY_SET_NOT_ASYMMETRIC"));
             }
         });
 
@@ -103,7 +102,7 @@ public class PublicKeyCommandStage extends AbstractStage {
         grid.add(directoryChooserButton, 2, 0);
         grid.add(executeButton, 3, 0);
     }
-    
+
     /**
      * Resets the elements to their default values
      */

@@ -49,24 +49,22 @@ public class PromoteDemoteCommandStage extends AbstractStage {
             KeyStatus ks = new KeyStatus(serialHelper, userPath, keySetTextField.getText(), Integer.parseInt(versionTextField.getText()));
             if (actionComboBox.getValue().equals(PROMOTE)) { //Action: promote
                 try {
-                    if (ks.promote()){
-                    	clearElements();
-                    	success(b.getString("PROMOTE_SUCCESS"));
-                    }
-                    else{
-                    	error(b.getString("PROMOTE_NOT_SUCCESS"));
+                    if (ks.promote()) {
+                        clearElements();
+                        success(b.getString("PROMOTE_SUCCESS"));
+                    } else {
+                        error(b.getString("PROMOTE_NOT_SUCCESS"));
                     }
                 } catch (OperationNotSupportedException e1) {
                     error(b.getString("UNSUPPORTED_OPERATION"));
                 }
             } else { //Action: demote
                 try {
-                    if (ks.demote()){
-                    	clearElements();
-                    	success(b.getString("DEMOTE_SUCCESS"));
-                    }
-                    else{
-                    	error(b.getString("DEMOTE_NOT_SUCCESS"));
+                    if (ks.demote()) {
+                        clearElements();
+                        success(b.getString("DEMOTE_SUCCESS"));
+                    } else {
+                        error(b.getString("DEMOTE_NOT_SUCCESS"));
                     }
                 } catch (OperationNotSupportedException e1) {
                     error(b.getString("UNSUPPORTED_OPERATION"));
@@ -105,11 +103,11 @@ public class PromoteDemoteCommandStage extends AbstractStage {
         grid.add(keySetTextField, 1, 0);
         grid.add(versionLabel, 0, 1);
         grid.add(versionTextField, 1, 1);
-		grid.add(actionLabel, 0, 2);
+        grid.add(actionLabel, 0, 2);
         grid.add(actionComboBox, 1, 2);
         grid.add(executeButton, 1, 4);
     }
-    
+
     /**
      * Resets the elements to their default values
      */

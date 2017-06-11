@@ -41,12 +41,11 @@ public class RevokeCommandStage extends AbstractStage {
         executeButton.setOnMouseClicked(e -> {
             KeyStatus ks = new KeyStatus(serialHelper, userPath, keySetTextField.getText(), Integer.parseInt(versionTextField.getText()));
             try {
-                if (ks.revoke()){
-                	clearElements();
-                	success(b.getString("REVOKE_SUCCESS"));
-                }
-                else{
-                	error(b.getString("REVOKE_NOT_SUCCESS"));
+                if (ks.revoke()) {
+                    clearElements();
+                    success(b.getString("REVOKE_SUCCESS"));
+                } else {
+                    error(b.getString("REVOKE_NOT_SUCCESS"));
                 }
             } catch (OperationNotSupportedException e1) {
                 error(b.getString("UNSUPPORTED_OPERATION"));
@@ -82,7 +81,7 @@ public class RevokeCommandStage extends AbstractStage {
         grid.add(versionTextField, 1, 1);
         grid.add(executeButton, 1, 2);
     }
-    
+
     /**
      * Resets the elements to their default values
      */

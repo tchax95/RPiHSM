@@ -52,7 +52,7 @@ public class LoginStage extends AbstractStage {
                     LoginStage.this.hide();
                     new MainStage(serialHelper, userPath);
                 } else {
-                	clearElements();
+                    clearElements();
                     error(b.getString("WRONG_AUTHENTICATION"));
                 }
             }
@@ -90,11 +90,11 @@ public class LoginStage extends AbstractStage {
      * Resets the elements to their default values
      */
     private void clearElements() {
-    	passwordTextField.clear();
-	}
+        passwordTextField.clear();
+    }
 
 
-	/**
+    /**
      * Uses the {@link Login} to authenticate the given credentials.
      *
      * @return true if the user is authenticated false otherwise

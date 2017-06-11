@@ -36,12 +36,11 @@ public class DeleteKeySetCommandStage extends AbstractStage {
         executeButton.setOnMouseClicked(e1 -> {
             DeleteKeySet dk = new DeleteKeySet(serialHelper, userPath, nameTextField.getText());
             try {
-                if (dk.delete()){
-                	clearElements();
-                	success(b.getString("KEYSET_DELETION_SUCCESS"));
-                }
-                else{
-                	error(b.getString("KEYSET_DELETION_NOT_SUCCESS"));
+                if (dk.delete()) {
+                    clearElements();
+                    success(b.getString("KEYSET_DELETION_SUCCESS"));
+                } else {
+                    error(b.getString("KEYSET_DELETION_NOT_SUCCESS"));
                 }
             } catch (OperationNotSupportedException e) {
                 error(b.getString("UNSUPPORTED_OPERATION"));
@@ -65,11 +64,11 @@ public class DeleteKeySetCommandStage extends AbstractStage {
         grid.add(nameTextField, 1, 0);
         grid.add(executeButton, 1, 1);
     }
-    
+
     /**
      * Resets the elements to their default values
      */
     private void clearElements() {
-    	nameTextField.clear();
-	}
+        nameTextField.clear();
+    }
 }

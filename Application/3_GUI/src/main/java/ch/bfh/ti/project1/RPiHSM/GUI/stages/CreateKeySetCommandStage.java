@@ -59,7 +59,7 @@ public class CreateKeySetCommandStage extends AbstractStage {
             CreateKeySet cks = new CreateKeySet(serialHelper, userPath, purposeComboBox.getValue(), nameTextField.getText(), algorithm);
             try {
                 if (cks.create()) {
-                	clearElements();
+                    clearElements();
                     success(b.getString("KEYSET_CREATION_SUCCESS"));
                 } else {
                     error(b.getString("KEYSET_CREATION_NOT_SUCCESS"));
@@ -94,13 +94,13 @@ public class CreateKeySetCommandStage extends AbstractStage {
         grid.add(purposeComboBox, 1, 4);
         grid.add(executeButton, 1, 5);
     }
-    
+
     /**
      * Resets the elements to their default values
      */
     private void clearElements() {
-    	nameTextField.clear();
-    	purposeComboBox.getSelectionModel().select(CRYPT);
-    	algorithmComboBox.getSelectionModel().select(AES);
-	}
+        nameTextField.clear();
+        purposeComboBox.getSelectionModel().select(CRYPT);
+        algorithmComboBox.getSelectionModel().select(AES);
+    }
 }

@@ -48,7 +48,7 @@ public class AddKeyCommandStage extends AbstractStage {
             CreateKey ck = new CreateKey(serialHelper, userPath, keySetTextField.getText(), statusComboBox.getValue(), Integer.parseInt(sizeTextField.getText()));
             try {
                 if (ck.create()) {
-                	clearElements();
+                    clearElements();
                     success(b.getString("KEY_SUCCESS"));
                 } else {
                     error(b.getString("KEY_NOT_SUCCESS"));
@@ -96,8 +96,8 @@ public class AddKeyCommandStage extends AbstractStage {
      * Resets the elements to their default values
      */
     private void clearElements() {
-    	keySetTextField.clear();
+        keySetTextField.clear();
         statusComboBox.getSelectionModel().select(PRIMARY);
         sizeTextField.setText("0");
-	}
+    }
 }
