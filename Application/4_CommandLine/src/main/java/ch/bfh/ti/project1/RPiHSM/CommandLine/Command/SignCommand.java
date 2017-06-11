@@ -3,12 +3,9 @@ package ch.bfh.ti.project1.RPiHSM.CommandLine.Command;
 import ch.bfh.ti.project1.RPiHSM.API.SerialHelper;
 import ch.bfh.ti.project1.RPiHSM.API.Sign;
 import com.beust.jcommander.Parameter;
-import org.apache.commons.io.FileUtils;
 
 import javax.naming.OperationNotSupportedException;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -55,7 +52,7 @@ public class SignCommand implements CommandI {
      */
     @Override
     public String execute() {
-        Sign s = new Sign(serialHelper, userPath, keySetName, signatureFile.getAbsolutePath());
+        Sign s = new Sign(serialHelper, userPath, keySetName, filePath);
 
         try {
             if (s.sign()) {

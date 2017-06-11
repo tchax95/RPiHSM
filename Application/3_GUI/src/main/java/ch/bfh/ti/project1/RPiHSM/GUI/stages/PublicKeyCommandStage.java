@@ -99,8 +99,8 @@ public class PublicKeyCommandStage extends AbstractStage {
         grid.setGridLinesVisible(false);
         grid.add(keySetLabel, 0, 0);
         grid.add(keySetTextField, 1, 0);
-        grid.add(directoryChooserButton, 2, 0);
-        grid.add(executeButton, 3, 0);
+        grid.add(directoryChooserButton, 1, 1);
+        grid.add(executeButton, 1, 2);
     }
 
     /**

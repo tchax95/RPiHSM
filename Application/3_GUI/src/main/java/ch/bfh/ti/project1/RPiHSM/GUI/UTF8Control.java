@@ -14,18 +14,23 @@ import java.util.ResourceBundle;
  * An extension of {@link ResourceBundle.Control}. This class allows to convert a properties file to a UTF-8 file (keeps the accents)
  */
 public class UTF8Control extends ResourceBundle.Control {
+	
     /**
-     * TODO
+     * Instantiates a resource bundle for the given bundle name of the given format and locale, using the given class loader if necessary.
+     * This method returns null if there is no resource bundle available for the given parameters.
+     * If a resource bundle can't be instantiated due to an unexpected error,
+     * the error must be reported by throwing an Error or Exception rather than simply returning null. 
+     * If the reload flag is true, it indicates that this method is being called because the previously loaded resource bundle has expired
      *
-     * @param baseName
-     * @param locale
-     * @param format
-     * @param loader
-     * @param reload
-     * @return
-     * @throws IllegalAccessException
-     * @throws InstantiationException
-     * @throws IOException
+     * @param baseName the base bundle name of the resource bundle, a fully qualified class name
+     * @param locale the locale for which the resource bundle should be instantiated
+     * @param format the resource bundle format to be loaded
+     * @param loader the ClassLoader to use to load the bundle
+     * @param reload the flag to indicate bundle reloading; true if reloading an expired resource bundle, false otherwise
+     * @return the resource bundle instance, or null if none could be found
+     * @throws IllegalAccessException if the class or its nullary constructor is not accessible
+     * @throws InstantiationException if the instantiation of a class fails for some other reason
+     * @throws IOException if an error occurred when reading resources using any I/O operations
      */
     public ResourceBundle newBundle(String baseName, Locale locale, String format, ClassLoader loader, boolean reload)
             throws IllegalAccessException, InstantiationException, IOException {

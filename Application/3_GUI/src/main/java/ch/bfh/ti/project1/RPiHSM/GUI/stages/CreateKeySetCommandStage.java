@@ -39,7 +39,7 @@ public class CreateKeySetCommandStage extends AbstractStage {
         nameTextField = new TextField();
         algorithmComboBox.getItems().addAll(AES, RSA);
         algorithmComboBox.getSelectionModel().selectFirst();
-        purposeComboBox.getItems().addAll(CRYPT, SIGN);
+        purposeComboBox.getItems().addAll(b.getString("CRYPT"), b.getString("SIGN"));
         purposeComboBox.getSelectionModel().selectFirst();
 
         //disables purpose and algorithm choices, if the key set already exists
@@ -71,8 +71,8 @@ public class CreateKeySetCommandStage extends AbstractStage {
 
         //changes the values of the purpose on algorithm choices (dsa can only sign)
         algorithmComboBox.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if (newValue.toString().equals(b.getString("DSA"))) purposeComboBox.getItems().setAll(SIGN);
-            else purposeComboBox.getItems().setAll(CRYPT, SIGN);
+            if (newValue.toString().equals(DSA)) purposeComboBox.getItems().setAll(b.getString("SIGN"));
+            else purposeComboBox.getItems().setAll(b.getString("CRYPT"), b.getString("SIGN"));
         });
 
         //changes the values of the algorithm on purpose choices (dsa can only sign)
@@ -100,7 +100,7 @@ public class CreateKeySetCommandStage extends AbstractStage {
      */
     private void clearElements() {
         nameTextField.clear();
-        purposeComboBox.getSelectionModel().select(CRYPT);
+        purposeComboBox.getSelectionModel().select(b.getString("CRYPT"));
         algorithmComboBox.getSelectionModel().select(AES);
     }
 }

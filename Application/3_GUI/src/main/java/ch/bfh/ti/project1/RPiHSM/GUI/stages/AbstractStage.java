@@ -8,12 +8,11 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -23,6 +22,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import javax.naming.OperationNotSupportedException;
+
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -41,6 +41,7 @@ public abstract class AbstractStage extends Stage {
     protected static final int TITLE_FONT_SIZE = 20;
     protected static final double BACK_BUTTON_HEIGHT = 30;
     protected static final double BACK_BUTTON_WIDTH = 200;
+    protected static final double LANGUAGE_BUTTON_WIDTH = 100;
 
     protected static final String TITLE = "RPiHSM GUI";
     protected static final String FONT = "Tahoma";
@@ -49,6 +50,7 @@ public abstract class AbstractStage extends Stage {
     protected static final String HEADER_BACKGROUND = "-fx-background-color: #FAC300;";
     protected static final String SECTIONS_TITLES_STYLE = "-fx-font: 15 arial; -fx-text-fill: #697D91; -fx-font-weight: bold;";
     protected static final String BUTTONS_STYLE = "-fx-font: 15 arial; -fx-base: #697D91; -fx-pref-height: 40px; -fx-focus-color: transparent; -fx-text-fill: #FFFFFF; -fx-font-weight: bold;";
+    protected static final String LANGUAGE_BUTTON_STYLE = "-fx-font: 15 arial; -fx-base: #FFFFFF; -fx-pref-height: 40px; -fx-focus-color: transparent; -fx-font-weight: bold;";
     protected static final String CONTAINERS_STYLE = "-fx-border-color: black; -fx-border-width: 1; -fx-border-style: solid;";
     protected static final String HEADER_IMAGE_PATH = "/images/bfh_logo.png";
     protected static final String NUMBER_FIELD_PATTERN = "^([1-9]|[1-9][0-9])$";
@@ -62,8 +64,6 @@ public abstract class AbstractStage extends Stage {
     protected static final String DSA = "dsa";
     protected static final String RSA = "rsa";
     protected static final String AES = "aes";
-    protected static final String SIGN = "sign";
-    protected static final String CRYPT = "crypt";
 
     private VBox pane;
 
@@ -156,23 +156,15 @@ public abstract class AbstractStage extends Stage {
         GridPane.setHalignment(sceneTitle, HPos.CENTER);
 
         ComboBox<String> languageComboBox = new ComboBox<>();
-        languageComboBox.getItems().addAll("it", "en");
+        languageComboBox.getItems().addAll(b.getString("languages").split(","));
         languageComboBox.getSelectionModel().select(Locale.getDefault().getLanguage());
-
-        languageComboBox.setStyle(BUTTONS_STYLE);
-        languageComboBox.setPrefSize(BACK_BUTTON_WIDTH, BACK_BUTTON_HEIGHT);
+        languageComboBox.setStyle(LANGUAGE_BUTTON_STYLE);
+        languageComboBox.setPrefSize(LANGUAGE_BUTTON_WIDTH, BACK_BUTTON_HEIGHT);
 
         languageComboBox.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if (newValue.toString().equals("it")) {
-                System.setProperty("user.language", "it");
-                Locale.setDefault(Locale.ITALIAN);
-            } else if (newValue.toString().equals("en")) {
-                System.setProperty("user.language", "en");
-                Locale.setDefault(Locale.ENGLISH);
-            }
+        	System.setProperty("user.language", newValue);
+            Locale.setDefault(Locale.forLanguageTag(newValue));
         });
-
-        //header.add(languageComboBox, 2, 0);
 
         if (backToMenu) { //Creates the backToMenu button if needed
             Button menuButton = new Button(b.getString("BACK_BUTTON_TEXT"));
@@ -182,7 +174,7 @@ public abstract class AbstractStage extends Stage {
                 new MainStage(serialHelper, userPath);
             });
             menuButton.setStyle(BUTTONS_STYLE);
-            header.add(new VBox(menuButton, languageComboBox), 2, 0);
+            header.add(new HBox(menuButton, languageComboBox), 2, 0);
             GridPane.setHalignment(menuButton, HPos.RIGHT);
         } else {
             header.add(languageComboBox, 2, 0);

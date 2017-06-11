@@ -32,7 +32,7 @@ public class PromoteDemoteCommandStage extends AbstractStage {
 
         //creates the scene objects
         this.sceneTitle = new Label(b.getString("PROMOTE_DEMOTE_COMMAND_TITLE"));
-        executeButton = new Button(PROMOTE);
+        executeButton = new Button(PROMOTE+" key");
         keySetLabel = new Label(b.getString("KEY_SET"));
         keySetTextField = new TextField();
         versionLabel = new Label(b.getString("VERSION_LABEL"));
