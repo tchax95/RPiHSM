@@ -51,12 +51,12 @@ public class DeleteKeySetCommand implements CommandI {
         DeleteKeySet dks = new DeleteKeySet(serialHelper, userPath, keySetName);
         try {
             if (dks.delete()) {
-                return b.getString("DELETE_KEY_SET_SUCCESS");
+                return b.getString("success.delete.keyset");
             } else {
-                return b.getString("DELETE_KEY_SET_ERROR");
+                return b.getString("error.delete.keyset");
             }
         } catch (OperationNotSupportedException e) {
-            return b.getString("UNSUPPORTED_OPERATION");
+            return b.getString("error.unsupported.operation");
         }
     }
 

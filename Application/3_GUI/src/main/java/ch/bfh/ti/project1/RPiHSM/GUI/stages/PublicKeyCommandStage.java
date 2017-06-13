@@ -35,18 +35,18 @@ public class PublicKeyCommandStage extends AbstractStage {
         super(serialHelper, userPath);
 
         //creates the scene objects
-        this.sceneTitle = new Label(b.getString("PUBLIC_KEY_COMMAND_TITLE"));
-        executeButton = new Button(b.getString("BUTTON_TEXT_PUBLICKEY"));
-        directoryChooserButton = new Button(b.getString("DIRECTORY_CHOOSER_SELECT_DESTINATION"));
+        this.sceneTitle = new Label(b.getString("stage.title.public.key"));
+        executeButton = new Button(b.getString("button.text.public.key"));
+        directoryChooserButton = new Button(b.getString("directory.chooser.text.destination"));
         destinationDirectoryChooser = new DirectoryChooser();
         destinationFolder = new File("");
-        keySetLabel = new Label(b.getString("KEY_SET"));
+        keySetLabel = new Label(b.getString("text.keyset"));
         keySetTextField = new TextField();
 
         //disables the file chooser if the key set does not exist
-        directoryChooserButton.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("KEYSET_EXISTS")).not());
+        directoryChooserButton.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("command.success.keyset.exist")).not());
         //disables the execute button if no file has been selected
-        executeButton.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("FILE_CHOOSER_DESTINATION_SELECTED")).not());
+        executeButton.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("directory.chooser.text.directory.selected")).not());
 
         //On mouse click, deletes all the files of the destination folder and tries to get all public keys of the given key set
         executeButton.setOnMouseClicked(e -> {
@@ -61,18 +61,18 @@ public class PublicKeyCommandStage extends AbstractStage {
             try {
                 if (pk.generate()) {
                     clearElements();
-                    success(b.getString("PUBLIC_KEY_SUCCESS"));
+                    success(b.getString("command.success.export.pub.key"));
                 } else {
-                    error(b.getString("PUBLIC_KEY_NOT_SUCCESS"));
+                    error(b.getString("command.error.export.pub.key"));
                 }
             } catch (OperationNotSupportedException e1) {
-                error(b.getString("UNSUPPORTED_OPERATION"));
+                error(b.getString("error.unsupported.operation"));
             } catch (KeySetIsEmptyException keySetIsEmpty) {
-                error(b.getString("KEY_SET_IS_EMPTY"));
+                error(b.getString("error.keyset.empty"));
             } catch (FileNotFoundException e1) {
-                error(b.getString("FILE_NOT_FOUND"));
+                error(b.getString("error.file.not.found"));
             } catch (KeySetNotAsymmetricException e1) {
-                error(b.getString("KEY_SET_NOT_ASYMMETRIC"));
+                error(b.getString("error.keyset.not.asymmetric"));
             }
         });
 
@@ -81,9 +81,9 @@ public class PublicKeyCommandStage extends AbstractStage {
             File temp = destinationDirectoryChooser.showDialog(this);
             if (temp != null) {
                 destinationFolder = temp;
-                success(b.getString("FILE_CHOOSER_DESTINATION_SELECTED"));
+                success(b.getString("directory.chooser.text.directory.selected"));
             } else {
-                error(b.getString("FILE_CHOOSER_DESTINATION_NOT_SELECTED"));
+                error(b.getString("directory.chooser.text.directory.not.selected"));
             }
         });
 

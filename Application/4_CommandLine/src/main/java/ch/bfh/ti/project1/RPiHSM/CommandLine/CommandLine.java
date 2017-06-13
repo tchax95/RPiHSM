@@ -46,8 +46,8 @@ public class CommandLine {
 
             //asks user info
             Console console = System.console();
-            String userName = console.readLine(b.getString("USER_NAME"));
-            char password[] = console.readPassword(b.getString("PASSWORD"));
+            String userName = console.readLine(b.getString("login.enter.username"));
+            char password[] = console.readPassword(b.getString("login.enter.password"));
 
             Login login = new Login(serialHelper, userName, new String(password));//performs login
 
@@ -67,29 +67,29 @@ public class CommandLine {
                     System.out.println(message);//print the returned message
 
                 } catch (ParameterException e) { // if the JCommand find some syntax errors
-                    System.out.println(b.getString("ILLEGAL_ARGUMENT"));
+                    System.out.println(b.getString("error.illegal.argument"));
                     System.out.println(cm.print());//print right syntax
                 } finally {
                     try {
                         serialHelper.closeConnection(); //The serial connection is closed
                     } catch (SerialPortException e) {
-                        System.out.println(b.getString("SERIAL_PORT_ERROR"));
+                        System.out.println(b.getString("error.serial.port"));
                     }
                 }
             } else {
-                System.out.println(b.getString("WRONG_CREDENTIALS"));
+                System.out.println(b.getString("error.login.credentials"));
             }
 
         } catch (PortInUseException e) {
-            System.out.println(b.getString("SERIAL_PORT_IN_USE"));
+            System.out.println(b.getString("error.serial.port.in.use"));
         } catch (UnsupportedCommOperationException e) {
-            System.out.println(b.getString("UNSUPPORTED_COM_OPERATION"));
+            System.out.println(b.getString("error.unsupported.com.operation"));
         } catch (SerialPortException e) {
-            System.out.println(b.getString("SERIAL_PORT_ERROR"));
+            System.out.println(b.getString("error.serial.port"));
         } catch (OperationNotSupportedException e) {
-            System.out.println(b.getString("UNSUPPORTED_OPERATION"));
+            System.out.println(b.getString("error.unsupported.operation"));
         } catch (NullPointerException e) {
-            System.out.println(b.getString("PORT_NOT_CONNECTED"));
+            System.out.println(b.getString("error.port.not.connected"));
         } finally {
             System.exit(0); // System exist with status 0 -> all the errors are catch and printed to the user
         }

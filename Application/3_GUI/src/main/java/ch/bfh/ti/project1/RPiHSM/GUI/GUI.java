@@ -36,13 +36,13 @@ public class GUI extends Application {
             serialHelper = new SerialHelper();
             new LoginStage(serialHelper); //creates the first stage
         } catch (PortInUseException e) {
-            new ErrorStage(bundle.getString("PORT_IN_USE"));
+            new ErrorStage(bundle.getString("error.port.in.use"));
         } catch (UnsupportedCommOperationException e) {
-            new ErrorStage(bundle.getString("UNSUPPORTED_COM_OPERATION"));
+            new ErrorStage(bundle.getString("error.com.unsupported.operation"));
         } catch (SerialPortException e) {
-            new ErrorStage(bundle.getString("PORT_ERROR"));
+            new ErrorStage(bundle.getString("error.port"));
         } catch (NullPointerException e) {
-            new ErrorStage(bundle.getString("PORT_NOT_CONNECTED"));
+            new ErrorStage(bundle.getString("error.port.not.connected"));
         }
     }
 

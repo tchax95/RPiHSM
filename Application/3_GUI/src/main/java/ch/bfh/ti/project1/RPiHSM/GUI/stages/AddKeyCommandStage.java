@@ -32,11 +32,11 @@ public class AddKeyCommandStage extends AbstractStage {
         super(serialHelper, userPath);
 
         //creates the scene objects
-        this.sceneTitle = new Label(b.getString("ADD_KEY_COMMAND_STAGE_TITLE"));
-        executeButton = new Button(b.getString("BUTTON_TEXT_ADDKEY"));
-        keySetLabel = new Label(b.getString("NAME"));
-        statusLabel = new Label(b.getString("STATUS"));
-        sizeLabel = new Label(b.getString("SIZE") + "( 0 = default )");
+        this.sceneTitle = new Label(b.getString("stage.title.add.key"));
+        executeButton = new Button(b.getString("button.text.add.key"));
+        keySetLabel = new Label(b.getString("text.name"));
+        statusLabel = new Label(b.getString("text.status"));
+        sizeLabel = new Label(b.getString("text.size") + "( 0 = default )");
         keySetTextField = new TextField();
         statusComboBox = new ComboBox<>();
         sizeTextField = new TextField("0");
@@ -49,17 +49,17 @@ public class AddKeyCommandStage extends AbstractStage {
             try {
                 if (ck.create()) {
                     clearElements();
-                    success(b.getString("KEY_SUCCESS"));
+                    success(b.getString("command.success.create.key"));
                 } else {
-                    error(b.getString("KEY_NOT_SUCCESS"));
+                    error(b.getString("command.error.create.key"));
                 }
             } catch (OperationNotSupportedException e) {
-                error(b.getString("UNSUPPORTED_OPERATION"));
+                error(b.getString("error.unsupported.operation"));
             }
         });
 
         //bind to size text field disable property
-        sizeTextField.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("KEYSET_EXISTS")).not());
+        sizeTextField.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("command.success.keyset.exist")).not());
         executeButton.disableProperty().bind(sizeTextField.disabledProperty());
         statusComboBox.disableProperty().bind(sizeTextField.disabledProperty());
 

@@ -64,6 +64,8 @@ public abstract class AbstractStage extends Stage {
     protected static final String DSA = "dsa";
     protected static final String RSA = "rsa";
     protected static final String AES = "aes";
+	protected static final String CRYPT = "crypt";
+	protected static final String SIGN = "sign";
 
     private VBox pane;
 
@@ -119,7 +121,7 @@ public abstract class AbstractStage extends Stage {
                 try {
                     serialHelper.closeConnection(); //closes the serial connection while closing the application
                 } catch (SerialPortException e1) {
-                    error(b.getString("UNSUPPORTED_COM_OPERATION"));
+                    error(b.getString("error.com.unsupported.operation"));
                 }
             }
         });
@@ -156,7 +158,7 @@ public abstract class AbstractStage extends Stage {
         GridPane.setHalignment(sceneTitle, HPos.CENTER);
 
         ComboBox<String> languageComboBox = new ComboBox<>();
-        languageComboBox.getItems().addAll(b.getString("languages").split(","));
+        languageComboBox.getItems().addAll(b.getString("constants.languages").split(","));
         languageComboBox.getSelectionModel().select(Locale.getDefault().getLanguage());
         languageComboBox.setStyle(LANGUAGE_BUTTON_STYLE);
         languageComboBox.setPrefSize(LANGUAGE_BUTTON_WIDTH, BACK_BUTTON_HEIGHT);
@@ -167,7 +169,7 @@ public abstract class AbstractStage extends Stage {
         });
 
         if (backToMenu) { //Creates the backToMenu button if needed
-            Button menuButton = new Button(b.getString("BACK_BUTTON_TEXT"));
+            Button menuButton = new Button(b.getString("button.text.back"));
             menuButton.setPrefSize(BACK_BUTTON_WIDTH, BACK_BUTTON_HEIGHT);
             menuButton.setOnMouseClicked(e -> {
                 this.hide();
@@ -211,10 +213,10 @@ public abstract class AbstractStage extends Stage {
     protected void checkKeyExistence(String keySet) {
         KeyExistence ke = new KeyExistence(serialHelper, userPath, keySet);
         try {
-            if (ke.keyexist()) success(b.getString("KEYSET_EXISTS")); //checks if the key set exists
-            else error(b.getString("KEYSET_NOT_EXISTS"));
+            if (ke.keyexist()) success(b.getString("command.success.keyset.exist")); //checks if the key set exists
+            else error(b.getString("command.error.keyset.not.exist"));
         } catch (OperationNotSupportedException e) {
-            error("UNSUPPORTED_OPERATION");
+            error("error.unsupported.operation");
         }
     }
 

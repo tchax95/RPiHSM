@@ -24,7 +24,7 @@ public final class StatusValidator implements IParameterValidator {
     @Override
     public void validate(String name, String value) throws ParameterException {
         if (!value.equals(Constants.PRIMARY) && !value.equals(Constants.ACTIVE) && !value.equals(Constants.INACTIVE))
-            throw new ParameterException(ResourceBundle.getBundle("language", Locale.getDefault()).getString("ILLEGAL_ARGUMENT"));
+            throw new ParameterException(ResourceBundle.getBundle("language", Locale.getDefault()).getString("error.illegal.argument"));
     }
 
 }

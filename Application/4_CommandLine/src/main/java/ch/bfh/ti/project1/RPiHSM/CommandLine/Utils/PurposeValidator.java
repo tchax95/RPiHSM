@@ -24,7 +24,7 @@ public final class PurposeValidator implements IParameterValidator {
     @Override
     public void validate(String name, String value) throws ParameterException {
         if (!value.equals(Constants.CRYPT) && !value.equals(Constants.SIGN))
-            throw new ParameterException(ResourceBundle.getBundle("language", Locale.getDefault()).getString("ILLEGAL_ARGUMENT"));
+            throw new ParameterException(ResourceBundle.getBundle("language", Locale.getDefault()).getString("error.illegal.argument"));
     }
 
 }

@@ -24,6 +24,6 @@ public class StatusCommandValidator implements IParameterValidator {
     @Override
     public void validate(String name, String value) throws ParameterException {
         if (!value.equals(Constants.DEMOTE) && !value.equals(Constants.REVOKE) && !value.equals(Constants.PROMOTE))
-            throw new ParameterException(ResourceBundle.getBundle("language", Locale.getDefault()).getString("ILLEGAL_ARGUMENT"));
+            throw new ParameterException(ResourceBundle.getBundle("language", Locale.getDefault()).getString("error.illegal.argument"));
     }
 }

@@ -61,25 +61,25 @@ public class KeyStatusCommand implements CommandI {
         try {
             if (status.equals(Constants.DEMOTE)) {
                 if (ks.demote()) {
-                    return b.getString("DEMOTE_SUCCESS");
+                    return b.getString("success.demote");
                 } else {
-                    return b.getString("DEMOTE_ERROR");
+                    return b.getString("error.demote");
                 }
             } else if (status.equals(Constants.PROMOTE)) {
                 if (ks.promote()) {
-                    return b.getString("PROMOTE_SUCCESS");
+                    return b.getString("success.promote");
                 } else {
-                    return b.getString("PROMOTE_ERROR");
+                    return b.getString("error.promote");
                 }
             } else {
                 if (ks.revoke()) {
-                    return b.getString("REVOKE_SUCCESS");
+                    return b.getString("success.revoke");
                 } else {
-                    return b.getString("REVOKE_ERROR");
+                    return b.getString("error.revoke");
                 }
             }
         } catch (OperationNotSupportedException e) {
-            return b.getString("UNSUPPORTED_OPERATION");
+            return b.getString("error.unsupported.operation");
         }
 
     }

@@ -25,23 +25,23 @@ public class MainStage extends AbstractStage {
         super(serialHelper, userPath);
 
         //creates the scene objects
-        this.sceneTitle = new Label(b.getString("MAIN_STAGE_TITLE"));
-        addKeyButton = new Button(b.getString("MAIN_STAGE_BUTTON_ADDKEY"));
-        createKeySetButton = new Button(b.getString("MAIN_STAGE_BUTTON_CREATEKEYSET"));
-        deleteKeySetButton = new Button(b.getString("MAIN_STAGE_BUTTON_DELETEKEYSET"));
-        decryptButton = new Button(b.getString("MAIN_STAGE_BUTTON_DECRYPT"));
-        encryptButton = new Button(b.getString("MAIN_STAGE_BUTTON_ENCRYPT"));
-        promoteDemoteButton = new Button(b.getString("MAIN_STAGE_BUTTON_PROMOTE_DEMOTE"));
-        pubKeyButton = new Button(b.getString("MAIN_STAGE_BUTTON_PUBLICKEY"));
-        revokeButton = new Button(b.getString("MAIN_STAGE_BUTTON_REVOKE"));
-        signButton = new Button(b.getString("MAIN_STAGE_BUTTON_SIGN"));
-        verifyButton = new Button(b.getString("MAIN_STAGE_BUTTON_VERIFY"));
+        this.sceneTitle = new Label(b.getString("stage.title.main"));
+        addKeyButton = new Button(b.getString("button.text.main.stage.add.key"));
+        createKeySetButton = new Button(b.getString("button.text.main.stage.create.keyset"));
+        deleteKeySetButton = new Button(b.getString("button.text.main.stage.delete.keyset"));
+        decryptButton = new Button(b.getString("button.text.main.stage.decrypt"));
+        encryptButton = new Button(b.getString("button.text.main.stage.encrypt"));
+        promoteDemoteButton = new Button(b.getString("button.text.main.stage.promote.demote"));
+        pubKeyButton = new Button(b.getString("button.text.main.stage.public.key"));
+        revokeButton = new Button(b.getString("button.text.main.stage.revoke"));
+        signButton = new Button(b.getString("button.text.main.stage.sign"));
+        verifyButton = new Button(b.getString("button.text.main.stage.verify"));
 
         //creates container titles
-        Label titleContainer1 = new Label(b.getString("MAIN_STAGE_CONTAINER1_TITLE"));
-        Label titleContainer2 = new Label(b.getString("MAIN_STAGE_CONTAINER2_TITLE"));
-        Label titleContainer3 = new Label(b.getString("MAIN_STAGE_CONTAINER3_TITLE"));
-        Label titleContainer4 = new Label(b.getString("MAIN_STAGE_CONTAINER4_TITLE"));
+        Label titleContainer1 = new Label(b.getString("stage.containers.title.keyset"));
+        Label titleContainer2 = new Label(b.getString("stage.containers.title.key"));
+        Label titleContainer3 = new Label(b.getString("stage.containers.title.crypto"));
+        Label titleContainer4 = new Label(b.getString("stage.containers.title.signature"));
 
         titleContainer1.setStyle(SECTIONS_TITLES_STYLE);
         titleContainer2.setStyle(SECTIONS_TITLES_STYLE);

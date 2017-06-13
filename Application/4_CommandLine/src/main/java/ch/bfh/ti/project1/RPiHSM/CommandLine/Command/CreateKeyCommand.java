@@ -64,12 +64,12 @@ public class CreateKeyCommand implements CommandI {
 
         try {
             if (ck.create()) {
-                return b.getString("KEY_SUCCESS");
+                return b.getString("success.create.key");
             } else {
-                return b.getString("KEY_ERROR");
+                return b.getString("error.create.key");
             }
         } catch (OperationNotSupportedException e) {
-            return b.getString("UNSUPPORTED_OPERATION");
+            return b.getString("error.unsupported.operation");
         }
 
     }

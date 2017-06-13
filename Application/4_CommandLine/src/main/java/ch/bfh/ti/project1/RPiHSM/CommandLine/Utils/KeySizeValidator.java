@@ -25,7 +25,7 @@ public class KeySizeValidator implements IParameterValidator {
     @Override
     public void validate(String name, String value) throws ParameterException {
         if (Integer.parseInt(value) < 0 && Integer.parseInt(value) % 2 != 0) { //the key must be even and grater than 0
-            throw new ParameterException(ResourceBundle.getBundle("language", Locale.getDefault()).getString("ILLEGAL_ARGUMENT"));
+            throw new ParameterException(ResourceBundle.getBundle("language", Locale.getDefault()).getString("error.illegal.argument"));
         }
     }
 }

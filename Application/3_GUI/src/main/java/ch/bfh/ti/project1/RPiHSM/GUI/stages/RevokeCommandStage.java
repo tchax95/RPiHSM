@@ -29,11 +29,11 @@ public class RevokeCommandStage extends AbstractStage {
         super(serialHelper, userPath);
 
         //creates the scene objects
-        this.sceneTitle = new Label(b.getString("REVOKE_COMMAND_TITLE"));
-        executeButton = new Button(b.getString("BUTTON_TEXT_REVOKE"));
-        keySetLabel = new Label(b.getString("KEY_SET"));
+        this.sceneTitle = new Label(b.getString("stage.title.revoke"));
+        executeButton = new Button(b.getString("button.text.revoke"));
+        keySetLabel = new Label(b.getString("text.keyset"));
         keySetTextField = new TextField();
-        versionLabel = new Label(b.getString("VERSION_LABEL"));
+        versionLabel = new Label(b.getString("text.version"));
         versionTextField = new TextField();
         executeButton.setDisable(true); //disabled at begin
 
@@ -43,17 +43,17 @@ public class RevokeCommandStage extends AbstractStage {
             try {
                 if (ks.revoke()) {
                     clearElements();
-                    success(b.getString("REVOKE_SUCCESS"));
+                    success(b.getString("command.success.revoke"));
                 } else {
-                    error(b.getString("REVOKE_NOT_SUCCESS"));
+                    error(b.getString("command.error.revoke"));
                 }
             } catch (OperationNotSupportedException e1) {
-                error(b.getString("UNSUPPORTED_OPERATION"));
+                error(b.getString("error.unsupported.operation"));
             }
         });
 
         //disables the version textfield if the key set does not exist
-        versionTextField.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("KEYSET_EXISTS")).not());
+        versionTextField.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("command.success.keyset.exist")).not());
 
         //disables the execute button if the key set does not exist of if the key version is not a number
         versionTextField.textProperty().addListener((obs, oldValue, newValue) -> {
@@ -62,7 +62,7 @@ public class RevokeCommandStage extends AbstractStage {
                             versionTextField.getText().matches(NUMBER_FIELD_PATTERN)))
                             .and(keySetTextField.textProperty().length().greaterThan(2)))
                     .then(false)
-                    .otherwise(true).or(messages.textProperty().isEqualTo(b.getString("KEYSET_EXISTS")).not()));
+                    .otherwise(true).or(messages.textProperty().isEqualTo(b.getString("command.success.keyset.exist")).not()));
         });
 
         //on focus out checks if the key set exists

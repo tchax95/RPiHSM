@@ -27,9 +27,9 @@ public class DeleteKeySetCommandStage extends AbstractStage {
         super(serialHelper, userPath);
 
         //creates the scene objects
-        this.sceneTitle = new Label(b.getString("DELETE_KEYSET_COMMAND_TITLE"));
-        executeButton = new Button(b.getString("BUTTON_TEXT_DELETEKEYSET"));
-        nameLabel = new Label(b.getString("NAME"));
+        this.sceneTitle = new Label(b.getString("stage.title.delete.keyset"));
+        executeButton = new Button(b.getString("button.text.delete.keyset"));
+        nameLabel = new Label(b.getString("text.name"));
         nameTextField = new TextField();
 
         //On mouse clicked, ties to delete a key set and displays the success or error messages
@@ -38,17 +38,17 @@ public class DeleteKeySetCommandStage extends AbstractStage {
             try {
                 if (dk.delete()) {
                     clearElements();
-                    success(b.getString("KEYSET_DELETION_SUCCESS"));
+                    success(b.getString("command.success.delete.keyset"));
                 } else {
-                    error(b.getString("KEYSET_DELETION_NOT_SUCCESS"));
+                    error(b.getString("command.error.delete.keyset"));
                 }
             } catch (OperationNotSupportedException e) {
-                error(b.getString("UNSUPPORTED_OPERATION"));
+                error(b.getString("error.unsupported.operation"));
             }
         });
 
         //disables the execute button if the length of the key set entered is smaller than 2 or if the key set does not exist
-        executeButton.disableProperty().bind(nameTextField.textProperty().length().greaterThan(2).not().or(messages.textProperty().isEqualTo(b.getString("KEYSET_EXISTS")).not()));
+        executeButton.disableProperty().bind(nameTextField.textProperty().length().greaterThan(2).not().or(messages.textProperty().isEqualTo(b.getString("command.success.keyset.exist")).not()));
 
         //on focus out checks if the key set exists
         nameTextField.focusedProperty().addListener((obs, oldVal, newVal) -> {

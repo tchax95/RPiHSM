@@ -31,14 +31,14 @@ public class PromoteDemoteCommandStage extends AbstractStage {
         super(serialHelper, userPath);
 
         //creates the scene objects
-        this.sceneTitle = new Label(b.getString("PROMOTE_DEMOTE_COMMAND_TITLE"));
+        this.sceneTitle = new Label(b.getString("stage.title.promote.demote"));
         executeButton = new Button(PROMOTE+" key");
-        keySetLabel = new Label(b.getString("KEY_SET"));
+        keySetLabel = new Label(b.getString("text.keyset"));
         keySetTextField = new TextField();
-        versionLabel = new Label(b.getString("VERSION_LABEL"));
+        versionLabel = new Label(b.getString("text.version"));
         versionTextField = new TextField();
         actionComboBox = new ComboBox<>();
-        actionLabel = new Label(b.getString("ACTION_LABEL"));
+        actionLabel = new Label(b.getString("text.action"));
 
         actionComboBox.getItems().addAll(PROMOTE, DEMOTE);
         actionComboBox.getSelectionModel().selectFirst();
@@ -51,23 +51,23 @@ public class PromoteDemoteCommandStage extends AbstractStage {
                 try {
                     if (ks.promote()) {
                         clearElements();
-                        success(b.getString("PROMOTE_SUCCESS"));
+                        success(b.getString("command.success.promote"));
                     } else {
-                        error(b.getString("PROMOTE_NOT_SUCCESS"));
+                        error(b.getString("command.error.promote"));
                     }
                 } catch (OperationNotSupportedException e1) {
-                    error(b.getString("UNSUPPORTED_OPERATION"));
+                    error(b.getString("error.unsupported.operation"));
                 }
             } else { //Action: demote
                 try {
                     if (ks.demote()) {
                         clearElements();
-                        success(b.getString("DEMOTE_SUCCESS"));
+                        success(b.getString("command.success.demote"));
                     } else {
-                        error(b.getString("DEMOTE_NOT_SUCCESS"));
+                        error(b.getString("command.error.demote"));
                     }
                 } catch (OperationNotSupportedException e1) {
-                    error(b.getString("UNSUPPORTED_OPERATION"));
+                    error(b.getString("error.unsupported.operation"));
                 }
             }
         });
@@ -79,15 +79,15 @@ public class PromoteDemoteCommandStage extends AbstractStage {
                             versionTextField.getText().matches(NUMBER_FIELD_PATTERN)))
                             .and(keySetTextField.textProperty().length().greaterThan(2)))
                     .then(false)
-                    .otherwise(true).or(messages.textProperty().isEqualTo(b.getString("KEYSET_EXISTS")).not()));
+                    .otherwise(true).or(messages.textProperty().isEqualTo(b.getString("command.success.keyset.exist")).not()));
         });
 
         //on value changed, changes the text of execute button (promote or demote key)
         actionComboBox.setOnAction(e -> executeButton.setText(actionComboBox.getSelectionModel().getSelectedItem() + " key"));
 
         //disables version textfield and action combo box if the key set does not exist
-        versionTextField.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("KEYSET_EXISTS")).not());
-        actionComboBox.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("KEYSET_EXISTS")).not());
+        versionTextField.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("command.success.keyset.exist")).not());
+        actionComboBox.disableProperty().bind(messages.textProperty().isEqualTo(b.getString("command.success.keyset.exist")).not());
 
         //on focus out checks if the key set exists
         keySetTextField.focusedProperty().addListener((obs, oldVal, newVal) -> {

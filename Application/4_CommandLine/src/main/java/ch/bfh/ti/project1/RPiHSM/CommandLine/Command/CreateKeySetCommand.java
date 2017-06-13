@@ -62,12 +62,12 @@ public class CreateKeySetCommand implements CommandI {
     public String execute() {
         //The RSA and dsa algorithm can be used together
         if (rsa && dsa) {
-            return b.getString("RSA_DSA_ERROR");
+            return b.getString("error.dsa.rsa");
         }
 
         //The dsa can be use only if the purpose is to sign
         if (dsa && purpose.equals(CRYPT)) {
-            return b.getString("CRYPT_ERROR");
+            return b.getString("error.dsa.only.sign");
         }
 
         String algorithm;
@@ -83,12 +83,12 @@ public class CreateKeySetCommand implements CommandI {
         CreateKeySet cks = new CreateKeySet(serialHelper, userPath, purpose, keySetName, algorithm);
         try {
             if (cks.create()) {
-                return b.getString("KEY_SET_SUCCESS");
+                return b.getString("success.create.keyset");
             } else {
-                return b.getString("KEY_SET_ERROR");
+                return b.getString("error.create.keyset");
             }
         } catch (OperationNotSupportedException e) {
-            return b.getString("UNSUPPORTED_OPERATION");
+            return b.getString("error.unsupported.operation");
         }
 
 

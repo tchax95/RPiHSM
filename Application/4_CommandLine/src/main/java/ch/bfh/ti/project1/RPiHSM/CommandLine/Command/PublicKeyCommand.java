@@ -65,18 +65,18 @@ public class PublicKeyCommand implements CommandI {
 
         try {
             if (pk.generate()) {
-                return b.getString("PUBLIC_KEY_SUCCESS");
+                return b.getString("success.public.key");
             } else {
-                return b.getString("PUBLIC_KEY_ERROR");
+                return b.getString("error.public.key");
             }
         } catch (OperationNotSupportedException e) {
-            return b.getString("UNSUPPORTED_OPERATION");
+            return b.getString("error.unsupported.operation");
         } catch (KeySetIsEmptyException keySetIsEmpty) {
-            return b.getString("KEY_SET_IS_EMPTY");
+            return b.getString("error.keyset.is.empty");
         } catch (FileNotFoundException e) {
-            return b.getString("FILE_NOT_FOUND");
+            return b.getString("error.file.not.found");
         } catch (KeySetNotAsymmetricException keySetNotAsymmetric) {
-            return b.getString("KEY_SET_NOT_ASYMMETRIC");
+            return b.getString("error.keyset.not.asymmetric");
         }
 
     }

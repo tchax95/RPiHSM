@@ -54,14 +54,14 @@ public class DecryptCommand implements CommandI {
         EncryptDecrypt ed = new EncryptDecrypt(serialHelper, userPath, keySetName, filePath);
         try {
             if (ed.decrypt()) {
-                return b.getString("DECRYPT_SUCCESS");
+                return b.getString("success.decrypt");
             } else {
-                return b.getString("DECRYPT_ERROR");
+                return b.getString("error.decrypt");
             }
         } catch (OperationNotSupportedException e) {
-            return b.getString("UNSUPPORTED_OPERATION");
+            return b.getString("error.unsupported.operation");
         } catch (FileNotFoundException e) {
-            return b.getString("FILE_NOT_FOUND");
+            return b.getString("error.file.not.found");
         }
     }
 

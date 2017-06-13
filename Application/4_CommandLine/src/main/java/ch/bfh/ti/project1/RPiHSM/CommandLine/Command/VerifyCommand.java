@@ -59,14 +59,14 @@ public class VerifyCommand implements CommandI {
 
         try {
             if (v.verify()) {
-                return b.getString("VERIFY_SUCCESS");
+                return b.getString("success.verify");
             } else {
-                return b.getString("VERIFY_ERROR");
+                return b.getString("error.verify");
             }
         } catch (OperationNotSupportedException e) {
-            return b.getString("UNSUPPORTED_OPERATION");
+            return b.getString("error.unsupported.operation");
         } catch (FileNotFoundException e) {
-            return b.getString("FILE_NOT_FOUND");
+            return b.getString("error.file.not.found");
         }
     }
 

@@ -56,14 +56,14 @@ public class SignCommand implements CommandI {
 
         try {
             if (s.sign()) {
-                return b.getString("SIGN_SUCCESS");
+                return b.getString("success.sign");
             } else {
-                return b.getString("SIGN_ERROR");
+                return b.getString("error.sign");
             }
         } catch (OperationNotSupportedException e) {
-            return b.getString("UNSUPPORTED_OPERATION");
+            return b.getString("error.unsupported.operation");
         } catch (FileNotFoundException e) {
-            return b.getString("FILE_NOT_FOUND");
+            return b.getString("error.file.not.found");
         }
 
     }
